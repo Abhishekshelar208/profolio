@@ -1,0 +1,74 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "profolio-abhishek-shelar",
+          "appId": "1:1076236209612:android:52b191d53e03491a7aa169",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "profolio-abhishek-shelar",
+          "appId": "1:1076236209612:ios:b779d9532e917dce7aa169",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "profolio-abhishek-shelar",
+          "appId": "1:1076236209612:ios:b779d9532e917dce7aa169",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "profolio-abhishek-shelar",
+          "configurations": {
+            "android": "1:1076236209612:android:52b191d53e03491a7aa169",
+            "ios": "1:1076236209612:ios:b779d9532e917dce7aa169",
+            "macos": "1:1076236209612:ios:b779d9532e917dce7aa169",
+            "web": "1:1076236209612:web:b6f8e0138810f0107aa169",
+            "windows": "1:1076236209612:web:9a037aa5b43216887aa169"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          },
+          {
+            "key": "Pragma",
+            "value": "no-cache"
+          },
+          {
+            "key": "Expires",
+            "value": "0"
+          }
+        ]
+      }
+    ]
+  }
+}

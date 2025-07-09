@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1076236209612",
+    "firebase_url": "https://profolio-abhishek-shelar-default-rtdb.firebaseio.com",
+    "project_id": "profolio-abhishek-shelar",
+    "storage_bucket": "profolio-abhishek-shelar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076236209612:android:52b191d53e03491a7aa169",
+        "android_client_info": {
+          "package_name": "com.example.profolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh-krr3fam5stkXyIyW8Gxu-xYjeQP5P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
