@@ -62,7 +62,7 @@ class SplashServicesForStudent {
       final user = auth.currentUser;
 
       // Delay to show splash screen for 2.5 seconds
-      await Future.delayed(const Duration(milliseconds: 2500));
+      await Future.delayed(const Duration(milliseconds: 2000));
 
       if (user != null) {
         // User is logged in, redirect to HomeScreenForStudent

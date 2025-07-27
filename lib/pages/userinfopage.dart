@@ -12,12 +12,16 @@ import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:profolio/pages/designSelectionPage.dart';
+import 'package:profolio/pages/portfoliolist.dart';
+import 'package:profolio/pages/utils.dart';
 import 'package:profolio/portfolioDesings/designone.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../portfolioDesings/designfour.dart';
 import '../portfolioDesings/designthreee.dart';
 import '../portfolioDesings/designtwo.dart';
+import 'PaymentCodeVerificationPage.dart';
+import 'VerifyDetailsPage.dart';
 import 'loadingAnimation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -30,9 +34,10 @@ final List<Color> predefinedColors = [
 
 
 class UserInfoPage extends StatefulWidget {
-  const UserInfoPage({super.key,required this.designName});
+  const UserInfoPage({super.key,required this.designName,required this.designPrice,});
 
   final String designName;
+  final String designPrice;
 
   @override
   State<UserInfoPage> createState() => _UserInfoPageState();
@@ -94,6 +99,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
   int softSkillColorIndex = 0;
 
   bool isLoading = false;
+
+  bool isVerified = false; // add this in your StatefulWidget class
+
 
 
   List<String> toolsList = [];
@@ -400,6 +408,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
       Map<String, dynamic> userData = {
         "selectedDesign": widget.designName.toString(),
+        "designPrice": widget.designPrice.toString(),
         "personalInfo": {
           "fullName": nameController.text.trim(),
           "aboutyourself": aboutyourselfController.text.trim(),
@@ -429,32 +438,18 @@ class _UserInfoPageState extends State<UserInfoPage> {
       };
 
       await userRef.set(userData);
-       // await counterRef.set(currentCounter + 1);
+      // await counterRef.set(currentCounter + 1);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("User data saved successfully!")),
-      );
 
-      Widget selectedPage;
-      if (widget.designName == "DesignOne") {
-        selectedPage = DesignOne(userData: userData, );
-      } else if (widget.designName == "DesignTwo") {
-        selectedPage = DesignTwo(userData: userData, );
-      } else if (widget.designName == "DesignThree") {
-        selectedPage = DesignThree(userData: userData);
-      } else if (widget.designName == "DesignFour") {
-        selectedPage = DesignFour(userData: userData);
-      } else {
-        // Fallback to a default design page if none match
-        selectedPage = DesignOne(userData: userData,);
-      }
+      Utils().toastMessage("Your Portfolio is created Successfully.");
 
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => selectedPage,
+          builder: (context) => PortfolioListPage(),
         ),
       );
+
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: ${e.toString()}")),
@@ -481,7 +476,19 @@ class _UserInfoPageState extends State<UserInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Create Portfolio"),centerTitle: true,),
+      backgroundColor: const Color(0xffe0eae5),
+      appBar: AppBar(
+        backgroundColor: const Color(0xffe0eae5),
+        title: Text(
+          "Create Portfolio",
+          style: GoogleFonts.blinker(
+            fontSize: 26,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Form(
@@ -492,52 +499,126 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 onTap: _pickImage,
                 child: CircleAvatar(
                   radius: 50,
+                  backgroundColor: Colors.blue,
                   backgroundImage: _imageFile != null ? FileImage(_imageFile!) : null,
                   child: _imageFile == null
-                      ? Icon(Icons.person, size: 50, color: Colors.grey)
+                      ? Icon(Icons.person, size: 50, color: Colors.white)
                       : null,
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              _buildTextField(nameController, "Name", Icons.person),
-              _buildTextField(aboutyourselfController, "About Yourself", Icons.book),
-              _buildTextField(useremailController, "Email", Icons.account_balance),
+              Text("Personal Details", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+
+              SizedBox(
+                height: 10,
+              ),
+              _buildTextField(nameController, "Name", Icons.person,
+                  isEnabled: false, // disables the field
+                  defaultValue: "Ex: Abhishek Shelar", // sets default value
+                  ),
+              _buildTextField(aboutyourselfController, "About Yourself", Icons.book,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: I’m an enthusiastic engineering student passionate about technology and innovation. I enjoy solving real-world problems through creative thinking and teamwork. With a strong foundation in programming and project design, I’m eager to learn, grow, and contribute meaningfully. I thrive in dynamic environments and aim to make a positive impact.", // sets default value
+              ),
+              _buildTextField(useremailController, "Email", Icons.account_balance,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: youremail@gmail.com", // sets default value
+              ),
               SizedBox(
                 height: 10,
               ),
               TextFormField(
-                controller: InternshipCompletedContoller,
+                enabled: false, // ✅ Disables the field
+                controller: TextEditingController(text: "Ex: 98768986543"), // ✅ Sets default value
+                style: GoogleFonts.blinker(
+                  color: Colors.grey[400],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                // controller: InternshipCompletedContoller,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_balance_wallet_outlined, color: Colors.teal),
-                  hintText: 'No of Internship Completed',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: "No of Internship Completed",
+                  labelStyle: GoogleFonts.blinker(
+                    color: Colors.white70,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  filled: true,
+                  fillColor: Color(0xff1E1E1E),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade700),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              _buildTextField(graduationYearController, "Year of Graduation", Icons.date_range, keyboardType: TextInputType.number),
-
-
-
-              SizedBox(
-                height: 20,
+              _buildTextField(graduationYearController, "Year of Graduation", Icons.date_range, keyboardType: TextInputType.number,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: 2028", // sets default value
               ),
-              Text("Skills", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+
+
 
               SizedBox(
-                height: 10,
+                height: 50,
+              ),
+              Text("Skills Section", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+
+              SizedBox(
+                height: 15,
               ),
               TextFormField(
-                controller: NoofSkillsController,
+                enabled: false, // ✅ Disables the field
+                controller: TextEditingController(text: "Ex: 8"), // ✅ Sets default value
+                style: GoogleFonts.blinker(
+                  color: Colors.grey[400],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                // controller: NoofSkillsController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_balance_wallet_outlined, color: Colors.teal),
-                  hintText: 'No of Skills',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: "No of Skills",
+                  labelStyle: GoogleFonts.blinker(
+                    color: Colors.white70,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  filled: true,
+                  fillColor: Color(0xff1E1E1E),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade700),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  ),
                 ),
               ),
               SizedBox(
@@ -546,10 +627,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
               Row(
                 children: [
                   Expanded(
-                    child: _buildTextField(skillsController, "Skills", Icons.star),
+                    child: _buildTextField(skillsController, "Skills", Icons.star,
+                      isEnabled: false, // disables the field
+                      defaultValue: "Ex: Java", // sets default value
+                    ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
+                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
                     onPressed: _addSkill,
                   ),
                 ],
@@ -558,8 +642,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 spacing: 8,
                 children: List.generate(skillsList.length, (index) {
                   return Chip(
-                    label: Text(skillsList[index], style: TextStyle(color: Colors.white)),
-                    backgroundColor: Colors.teal,
+                    label: Text(skillsList[index],
+                      style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: Colors.blue,
                     deleteIcon: Icon(Icons.close, color: Colors.white),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100), // Apply the border radius here
@@ -577,10 +667,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
               Row(
                 children: [
                   Expanded(
-                    child: _buildTextField(softSkillsController, "Soft Skills", Icons.accessibility),
+                    child: _buildTextField(softSkillsController, "Soft Skills", Icons.accessibility,
+                      isEnabled: false, // disables the field
+                      defaultValue: "Ex: Communication", // sets default value
+                    ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
+                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
                     onPressed: _addSoftSkill,
                   ),
                 ],
@@ -589,9 +682,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 spacing: 8,
                 children: List.generate(softSkillsList.length, (index) {
                   return Chip(
-                    label: Text(softSkillsList[index], style: TextStyle(color: Colors.white)),
+                    label: Text(softSkillsList[index],
+                      style: GoogleFonts.blinker(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),),
                     // backgroundColor: softSkillsColors[index],  if you want multiple colors
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100), // Apply the border radius here
                     ),
@@ -608,10 +706,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
               Row(
                 children: [
                   Expanded(
-                    child: _buildTextField(toolsController, "Tools / Software Known", Icons.language),
+                    child: _buildTextField(toolsController, "Tools / Software Known", Icons.language,
+                      isEnabled: false, // disables the field
+                      defaultValue: "Ex: VS Code", // sets default value
+                    ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
+                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
                     onPressed: _addTools,
                   ),
                 ],
@@ -620,9 +721,16 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 spacing: 8,
                 children: List.generate(toolsList.length, (index) {
                   return Chip(
-                    label: Text(toolsList[index], style: TextStyle(color: Colors.white)),
+                    label: Text(toolsList[index],
+                      style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+
+                    ),
                     // backgroundColor: languageColors[index],
-                    backgroundColor: Colors.teal,
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100), // Border radius of 100
                     ),
@@ -637,38 +745,93 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 }),
               ),
               SizedBox(
+                height: 50,
+              ),
+              Text("Experience Section", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+
+              SizedBox(
                 height: 20,
               ),
-              Text("Experiences", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 10,
-              ),
               TextFormField(
-                controller: monthofexperienceContoller,
+                enabled: false, // ✅ Disables the field
+                controller: TextEditingController(text: "Ex: 18"), // ✅ Sets default value
+                style: GoogleFonts.blinker(
+                  color: Colors.grey[400],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                // controller: monthofexperienceContoller,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_balance_wallet_outlined, color: Colors.teal),
-                  hintText: 'Months of Experience',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: 'Months of Experience',
+                  labelStyle: GoogleFonts.blinker(
+                    color: Colors.white70,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  filled: true,
+                  fillColor: Color(0xff1E1E1E),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade700),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              _buildTextField(experienceTitleController, "Experience Title", Icons.emoji_events),
-              _buildTextField(experienceDescriptionController, "Experience Description", Icons.description),
-              IconButton(
-                icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
-                onPressed: _addExperiences,
+              _buildTextField(experienceTitleController, "Experience Title", Icons.emoji_events,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: Internship at XYZ Tech Solutions", // sets default value
               ),
+              _buildTextField(experienceDescriptionController, "Experience Description", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: Completed a 6-week internship focused on real-time software development. Gained hands-on experience in Flutter, Firebase, and UI/UX design. Collaborated on building a functional mobile app for task management. Learned teamwork, version control, and client communication while meeting tight deadlines and delivering quality outcomes.", // sets default value
+              ),
+              SizedBox(height: 20,),
+              ElevatedButton.icon(
+                onPressed: _addExperiences,
+                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
+                label: Text("Add Experience", style: GoogleFonts.blinker(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                ),
+              ),
+              SizedBox(height: 10,),
 
               // Displaying added achievements as chips
               Wrap(
                 spacing: 8,
                 children: List.generate(experienceList.length, (index) {
                   return Chip(
-                    label: Text(experienceList[index]["title"], style: TextStyle(color: Colors.white)),
-                    backgroundColor: Colors.teal,
+                    label: Text(experienceList[index]["title"],
+                      style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -682,36 +845,84 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 }),
               ),
               SizedBox(
+                height: 50,
+              ),
+              Text("Project Section", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+
+              SizedBox(
                 height: 20,
               ),
-              Text("Projects", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 10,
-              ),
               TextFormField(
-                controller: ProjectCompletedContoller,
+                enabled: false, // ✅ Disables the field
+                controller: TextEditingController(text: "Ex: 5"), // ✅ Sets default value
+                style: GoogleFonts.blinker(
+                  color: Colors.grey[400],
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                // controller: ProjectCompletedContoller,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.account_balance_wallet_outlined, color: Colors.teal),
-                  hintText: 'No of Projects Completed',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: 'No of Project Completed',
+                  labelStyle: GoogleFonts.blinker(
+                    color: Colors.white70,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  filled: true,
+                  fillColor: Color(0xff1E1E1E),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade700),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              _buildTextField(projectTitleController, "Project Title", Icons.emoji_events),
-              _buildTextField(projectDescriptionController, "Project Description", Icons.description),
-              _buildTextField(techStackController, "Tech Used", Icons.description),
-              _buildTextField(githubLinkController, "Github Code link", Icons.description),
-              _buildTextField(youtubeLinkController, "Youtube Link", Icons.description),
+              _buildTextField(projectTitleController, "Project Title", Icons.emoji_events,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: QR Based System", // sets default value
+              ),
+              _buildTextField(projectDescriptionController, "Project Description", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: Completed a 6-week project focused on real-time software development. Gained hands-on experience in Flutter, Firebase, and UI/UX design. Collaborated on building a functional mobile app for task management. Learned teamwork, version control, and client communication while meeting tight deadlines and delivering quality outcomes.", // sets default value
+              ),
+              _buildTextField(techStackController, "Tech Used", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: Java, Python, etc", // sets default value
+              ),
+              _buildTextField(githubLinkController, "Github Code link", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: https://www.github.com/username", // sets default value
+              ),
+              _buildTextField(youtubeLinkController, "Youtube Link", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: https://www.youtube.com/videotitle", // sets default value
+              ),
               FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton.icon(
-                      label: Text("Upload Project Image"),
-                      icon: Icon(Icons.image, color: Colors.teal, size: 35),
+                      label: Text("Select Image", style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                      icon: Icon(Icons.image, color: Colors.black54, size: 35),
                       onPressed: _pickProjectImage,
                     ),
                     _projectImageFile != null
@@ -722,18 +933,38 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   ],
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
+              SizedBox(height: 20,),
+              ElevatedButton.icon(
                 onPressed: _addProjects,
+                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
+                label: Text("Add Project", style: GoogleFonts.blinker(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                ),
               ),
+              SizedBox(height: 10,),
 
               // Displaying added achievements as chips
               Wrap(
                 spacing: 8,
                 children: List.generate(projectsList.length, (index) {
                   return Chip(
-                    label: Text(projectsList[index]["title"], style: TextStyle(color: Colors.white)),
-                    backgroundColor: Colors.teal,
+                    label: Text(projectsList[index]["title"],
+                      style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -749,18 +980,35 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
 
               SizedBox(
+                height: 50,
+              ),
+              Text("Achievement Section", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+              SizedBox(
                 height: 20,
               ),
-              Text("Achievement", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              _buildTextField(achievementTitleController, "Achievement Title", Icons.emoji_events),
-              _buildTextField(achievementDescriptionController, "Achievement Description", Icons.description),
+              _buildTextField(achievementTitleController, "Achievement Title", Icons.emoji_events,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: First Rank in Diploma", // sets default value
+              ),
+              _buildTextField(achievementDescriptionController, "Achievement Description", Icons.description,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: In my diploma I secure First rank in Second and Third Year Engineering. I also get awarded by Principle Sir and HOD Sir of Information Technology of Saraswati College of Engineering. In my diploma I secure First rank in Second and Third Year Engineering. I also get awarded by Principle Sir and HOD Sir of Information Technology of Saraswati College of Engineering.", // sets default value
+              ),
               FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton.icon(
-                      label: Text("Upload Achievement Image"),
-                      icon: Icon(Icons.image, color: Colors.teal, size: 35),
+                      label:  Text("Select Image", style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                      icon: Icon(Icons.image, color: Colors.black54, size: 35),
                       onPressed: _pickAchievementImage,
                     ),
                     _achievementImageFile != null
@@ -771,10 +1019,27 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   ],
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.add_circle, color: Colors.teal, size: 35),
+              SizedBox(height: 20,),
+
+              ElevatedButton.icon(
                 onPressed: _addAchievement,
+                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
+                label: Text("Add Achievement", style: GoogleFonts.blinker(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                ),
               ),
+              SizedBox(height: 10,),
+
+
 
 
 
@@ -784,8 +1049,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 spacing: 8,
                 children: List.generate(achievementsList.length, (index) {
                   return Chip(
-                    label: Text(achievementsList[index]["title"], style: TextStyle(color: Colors.white)),
-                    backgroundColor: Colors.teal,
+                    label: Text(achievementsList[index]["title"],
+                      style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
@@ -800,23 +1071,47 @@ class _UserInfoPageState extends State<UserInfoPage> {
               ),
 
               SizedBox(
+                height: 50,
+              ),
+
+              Text("Account Links", style: GoogleFonts.blinker(
+                color: Colors.grey[800],
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),),
+
+              SizedBox(
                 height: 20,
               ),
 
-              Text("Account Links", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-
-              _buildTextField(linkedinController, "LinkedIn", Icons.linked_camera),
-              _buildTextField(githubController, "GitHub", Icons.code),
-              _buildTextField(instagramController, "Instagram", Icons.code),
-              _buildTextField(whatsappController, "WhatsApp No", Icons.numbers),
+              _buildTextField(linkedinController, "LinkedIn", Icons.linked_camera,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: https://www.linkedin.com/username", // sets default value
+              ),
+              _buildTextField(githubController, "GitHub", Icons.code,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: https://www.Github.com/username", // sets default value
+              ),
+              _buildTextField(instagramController, "Instagram", Icons.code,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: https://www.instagram.com/username", // sets default value
+              ),
+              _buildTextField(whatsappController, "WhatsApp No", Icons.numbers,
+                isEnabled: false, // disables the field
+                defaultValue: "Ex: 98768986543", // sets default value
+              ),
 
               FittedBox(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton.icon(
-                      label: Text("Upload Resume"),
-                      icon: Icon(Icons.picture_as_pdf, color: Colors.teal, size: 35),
+                      label: Text("Select Resume", style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),),
+                      icon: Icon(Icons.picture_as_pdf, color: Colors.black54, size: 35),
                       onPressed: _pickResumeFile, // Your function to pick a PDF file
                     ),
                     _resumeFile != null
@@ -828,7 +1123,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.blinker(
                             fontSize: 16,
-                            color: Colors.white60,
+                            color: Colors.black54,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -839,27 +1134,100 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 ),
               ),
 
-
               SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
+
+                  _addExperiences();
+                  _addProjects();
+                  _addAchievement();
+                  _addSkill();
+                  _addSoftSkill();
+                  _addTools();
+                  // Always open the verification page
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoadingScreen(
-                        onFinish: () {
-                          saveUserData();
+                      builder: (context) => VerifyDetailsPage(
+                        nameController: nameController,
+                        aboutyourselfController: aboutyourselfController,
+                        useremailController: useremailController,
+                        graduationYearController: graduationYearController,
+                        imageFile: _imageFile,
+                        resumeFile: _resumeFile,
+                        skillsList: skillsList,
+                        softSkillsList: softSkillsList,
+                        toolsList: toolsList,
+                        achievementsList: achievementsList,
+                        experienceList: experienceList,
+                        projectsList: projectsList,
+                        onVerificationComplete: (bool verified) {
+                          setState(() {
+                            isVerified = verified; // ✅ Only set true if all fields are filled
+                          });
                         },
                       ),
                     ),
                   );
+
                 },
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AbsorbPointer( // Prevent manual tap on checkbox
+                      child: Checkbox(
+                        checkColor: Colors.blue,
+                        value: isVerified,
+                        onChanged: null, // Disable direct checkbox change
+                      ),
+                    ),
+                    Text(
+                      "Please verify the details",
+                      style: GoogleFonts.blinker(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
                 ),
-                child: Text("Create"),
               ),
+
+              SizedBox(height: 20,),
+              if (isVerified) // ✅ Only show when verified
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PaymentCodeVerificationPage(
+                          designPrice: widget.designPrice,
+                          onVerified: () => saveUserData(),
+                        ),
+                      ),
+                    );
+                  },
+
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+                  ),
+                  child: Text(
+                    "Create",
+                    style: GoogleFonts.blinker(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+
+              SizedBox(height: 20,),
+
 
             ],
           ),
@@ -868,30 +1236,71 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String hint, IconData icon, {TextInputType keyboardType = TextInputType.text, bool isEmail = false}) {
+  Widget _buildTextField(
+      TextEditingController controller,
+      String hint,
+      IconData icon, {
+        TextInputType keyboardType = TextInputType.text,
+        bool isEmail = false,
+        bool isEnabled = true, // <-- Add this parameter
+        String? defaultValue,  // <-- Optional: allow default value
+      }) {
+    // Set default value if provided and controller is empty
+    if (defaultValue != null && controller.text.isEmpty) {
+      controller.text = defaultValue;
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         controller: controller,
+        enabled: isEnabled, // <-- Disable the field if false
         keyboardType: keyboardType,
+        style: GoogleFonts.blinker(
+          color: Colors.black54,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
         validator: (value) {
+          if (!isEnabled) return null; // Skip validation if disabled
           if (value == null || value.isEmpty) {
             return "This field cannot be empty";
           }
-          if (isEmail && !RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}\$").hasMatch(value)) {
+          if (isEmail &&
+              !RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$")
+                  .hasMatch(value)) {
             return "Enter a valid email address";
           }
           return null;
         },
         decoration: InputDecoration(
-          prefixIcon: Icon(icon, color: Colors.teal),
-          hintText: hint,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+          labelText: hint,
+          labelStyle: GoogleFonts.blinker(
+            color: Colors.black54,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.blue),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade700),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Colors.blue, width: 2),
+          ),
         ),
       ),
     );
   }
+
 }
+
 
 
 

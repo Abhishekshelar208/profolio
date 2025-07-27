@@ -1,16 +1,14 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class LoadingScreen extends StatelessWidget {
-  final VoidCallback? onFinish; // Make onFinish optional
+  final VoidCallback? onFinish;
 
   LoadingScreen({this.onFinish});
 
   @override
   Widget build(BuildContext context) {
-    // Call onFinish after a 3-second delay if it's provided
     Future.delayed(const Duration(seconds: 3), () {
       if (onFinish != null) onFinish!();
     });
@@ -18,21 +16,40 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
-          child: Lottie.asset(
-            height: 400,
-            'lib/assets/lottieAnimations/newTimer.json',
-
-            // width: 100,
-
-            fit: BoxFit.cover,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              'lib/assets/lottieAnimations/animationThree.json',
+              height: 300,
+              fit: BoxFit.contain,
+              repeat: true,
+            ),
+            SizedBox(height: 30),
+            Text(
+              "Creating Your Portfolio",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.blinker(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Text(
+                "This may take a few minutes based on your data.",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.blinker(
+                  fontSize: 16,
+                  color: Colors.black87,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-
-
-

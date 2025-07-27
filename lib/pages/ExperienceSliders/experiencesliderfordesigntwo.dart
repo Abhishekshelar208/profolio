@@ -24,28 +24,21 @@ class ExperienceSectionForDesignTwo extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        experience["title"] ?? "No Title",
-                        style: GoogleFonts.blinker(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                      Expanded( // Ensures wrapping
+                        child: Text(
+                          experience["title"] ?? "No Title",
+                          style: GoogleFonts.blinker(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 4),
-                  Row(
-                    children: [
-                      // Text(
-                      //   experience["duration"] ?? "No Duration",
-                      //   style: GoogleFonts.blinker(
-                      //     fontSize: 16,
-                      //     color: Colors.white54,
-                      //   ),
-                      // ),
-                    ],
-                  ),
                   SizedBox(height: 10),
                   Text(
                     experience["description"] ?? "No Description",
@@ -60,7 +53,7 @@ class ExperienceSectionForDesignTwo extends StatelessWidget {
                   : Row( // PC view: side-by-side layout
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title and Date (Left side)
+                  // Title (Left side)
                   Expanded(
                     flex: 2,
                     child: Column(
@@ -71,17 +64,12 @@ class ExperienceSectionForDesignTwo extends StatelessWidget {
                           style: GoogleFonts.blinker(
                             fontSize: 20,
                             color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                           ),
+                          softWrap: true,
+                          overflow: TextOverflow.visible,
                         ),
                         SizedBox(height: 4),
-                        // Text(
-                        //   experience["duration"] ?? "No Duration",
-                        //   style: GoogleFonts.blinker(
-                        //     fontSize: 16,
-                        //     color: Colors.white54,
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -100,7 +88,6 @@ class ExperienceSectionForDesignTwo extends StatelessWidget {
                 ],
               ),
             ),
-            // Divider for both mobile and PC
             Divider(
               color: Colors.white24,
               thickness: 1,

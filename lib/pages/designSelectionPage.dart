@@ -1,4 +1,241 @@
+//
+// import 'package:flutter/material.dart';
+// import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:profolio/pages/userinfopage.dart';
+//
+// class PortfolioDesignSelectionPage extends StatefulWidget {
+//   @override
+//   _PortfolioDesignSelectionPageState createState() =>
+//       _PortfolioDesignSelectionPageState();
+// }
+//
+// class _PortfolioDesignSelectionPageState
+//     extends State<PortfolioDesignSelectionPage> {
+//   final PageController _pageController = PageController();
+//   int currentPage = 0;
+//
+//   // List of design URLs
+//   final List<String> designUrls = [
+//     "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio520f3800",
+//     "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio5fadbabc",
+//     "https://i.pinimg.com/1200x/7b/4d/fa/7b4dfadca0e599d98bef3f3dda7b48b9.jpg",
+//     "https://i.pinimg.com/1200x/7b/4d/fa/7b4dfadca0e599d98bef3f3dda7b48b9.jpg",
+//     "https://i.pinimg.com/1200x/7b/4d/fa/7b4dfadca0e599d98bef3f3dda7b48b9.jpg",
+//     "https://i.pinimg.com/1200x/7b/4d/fa/7b4dfadca0e599d98bef3f3dda7b48b9.jpg",
+//     "https://i.pinimg.com/1200x/7b/4d/fa/7b4dfadca0e599d98bef3f3dda7b48b9.jpg",
+//   ];
+//
+//   final List<String> designNames = [
+//     "DesignOne",
+//     "DesignTwo",
+//     "DesignThree",
+//     "DesignFour",
+//     "DesignFive",
+//     "DesignSix",
+//     "DesignSeven",
+//   ];
+//
+//   final List<String> designPrices = [
+//     "In just ₹49",
+//     "In just ₹99",
+//     "In just ₹149",
+//     "In just ₹199",
+//     "In just ₹249",
+//     "In just ₹299",
+//     "In just ₹499",
+//   ];
+//
+//   void _nextPage() {
+//     if (currentPage < designUrls.length - 1) {
+//       setState(() => currentPage++);
+//       _pageController.animateToPage(
+//         currentPage,
+//         duration: Duration(milliseconds: 300),
+//         curve: Curves.easeInOut,
+//       );
+//     }
+//   }
+//
+//   void _previousPage() {
+//     if (currentPage > 0) {
+//       setState(() => currentPage--);
+//       _pageController.animateToPage(
+//         currentPage,
+//         duration: Duration(milliseconds: 300),
+//         curve: Curves.easeInOut,
+//       );
+//     }
+//   }
+//
+//   // void _selectDesign() {
+//   //   String selectedDesign = designNames[currentPage];
+//   //
+//   //   Navigator.push(
+//   //     context,
+//   //     MaterialPageRoute(
+//   //       builder: (context) => UserInfoPage(designName: selectedDesign),
+//   //     ),
+//   //   );
+//   // }
+//
+//   void _selectDesign() {
+//     String selectedDesign = designNames[currentPage];
+//     String selectedPrice = designPrices[currentPage];
+//
+//     Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (context) => UserInfoPage(
+//           designName: selectedDesign,
+//           designPrice: selectedPrice,
+//         ),
+//       ),
+//     );
+//   }
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: const Color(0xff121212),
+//       appBar: AppBar(
+//         backgroundColor: const Color(0xff121212),
+//         title: Text(
+//           "Select Portfolio Design",
+//           style: GoogleFonts.blinker(
+//             color: const Color(0xfffaa629),
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//         centerTitle: true,
+//       ),
+//       body: Column(
+//         children: [
+//           const SizedBox(height: 16),
+//           Expanded(
+//             child: PageView.builder(
+//               controller: _pageController,
+//               itemCount: designUrls.length,
+//               physics: NeverScrollableScrollPhysics(),
+//               itemBuilder: (context, index) {
+//                 return Padding(
+//                   padding: const EdgeInsets.symmetric(horizontal: 14.0),
+//                   child: Column(
+//                     children: [
+//                       Expanded(
+//                         child: Card(
+//                           color: const Color(0xff1e1e1e),
+//                           elevation: 5,
+//                           shape: RoundedRectangleBorder(
+//                             borderRadius: BorderRadius.circular(20),
+//                           ),
+//                           child: ClipRRect(
+//                             borderRadius: BorderRadius.circular(20),
+//                             child: InAppWebView(
+//                               initialUrlRequest: URLRequest(
+//                                 url: WebUri(designUrls[index]),
+//                               ),
+//                               initialOptions: InAppWebViewGroupOptions(
+//                                 crossPlatform: InAppWebViewOptions(
+//                                   javaScriptEnabled: true,
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                       const SizedBox(height: 10),
+//                       Text(
+//                         "${designPrices[index]}",
+//                         style: GoogleFonts.blinker(
+//                           fontSize: 16,
+//                           color: Color(0xfffaa629),
+//                           fontWeight: FontWeight.w600,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 );
+//               },
+//             ),
+//           ),
+//           const SizedBox(height: 16),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             children: [
+//               ElevatedButton.icon(
+//                 onPressed: _previousPage,
+//                 icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+//                 label: Text(
+//                   "Previous",
+//                   style: GoogleFonts.blinker(
+//                     fontWeight: FontWeight.bold,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: const Color(0xfffaa629),
+//                   padding:
+//                   const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(30),
+//                   ),
+//                 ),
+//               ),
+//               ElevatedButton.icon(
+//                 onPressed: _nextPage,
+//                 icon: Icon(Icons.arrow_forward_ios, color: Colors.black),
+//                 label: Text(
+//                   "Next",
+//                   style: GoogleFonts.blinker(
+//                     fontWeight: FontWeight.bold,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//                 style: ElevatedButton.styleFrom(
+//                   backgroundColor: const Color(0xfffaa629),
+//                   padding:
+//                   const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(30),
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           const SizedBox(height: 20),
+//           ElevatedButton(
+//             onPressed: _selectDesign,
+//             style: ElevatedButton.styleFrom(
+//               backgroundColor: const Color(0xfffaa629),
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(30),
+//               ),
+//               padding:
+//               const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+//             ),
+//             child: Text(
+//               "Select Design",
+//               style: GoogleFonts.blinker(
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//                 color: Colors.black,
+//               ),
+//             ),
+//           ),
+//           const SizedBox(height: 30),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
+
+
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:profolio/pages/userinfopage.dart';
@@ -12,98 +249,119 @@ class PortfolioDesignSelectionPage extends StatefulWidget {
 class _PortfolioDesignSelectionPageState
     extends State<PortfolioDesignSelectionPage> {
   final PageController _pageController = PageController();
-  int currentPage = 0;
+  List<Map<String, dynamic>> designList = [];
+  int currentIndex = 0;
+  bool isLoading = true;
 
-  // List of 7 design URLs
-  final List<String> designUrls = [
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000027",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000026",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000013",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000024",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000026",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000013",
-    "https://profolio-abhishek-shelar.web.app/#/portfolio/PortFolio000026",
-  ];
+  @override
+  void initState() {
+    super.initState();
+    fetchDesigns();
+  }
 
-  void _nextPage() {
-    if (currentPage < designUrls.length - 1) {
+  void fetchDesigns() async {
+    final DatabaseReference _dbRef =
+    FirebaseDatabase.instance.ref("PortfolioDetails");
+    final snapshot = await _dbRef.get();
+
+    if (snapshot.exists) {
+      List<Map<String, dynamic>> tempList = [];
+      for (var child in snapshot.children) {
+        final data = Map<String, dynamic>.from(child.value as Map);
+        tempList.add({
+          'PortfolioName': data['PortfolioName'] ?? '',
+          'PortfolioPrice': data['PortfolioPrice'] ?? '',
+          'PortfolioUrl': data['PortfolioUrl'] ?? '',
+        });
+      }
+
       setState(() {
-        currentPage++;
+        designList = tempList;
+        isLoading = false;
       });
-      _pageController.animateToPage(
-        currentPage,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+    } else {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
-  void _previousPage() {
-    if (currentPage > 0) {
-      setState(() {
-        currentPage--;
-      });
-      _pageController.animateToPage(
-        currentPage,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+  void _goToNextPage() {
+    if (currentIndex < designList.length - 1) {
+      setState(() => currentIndex++);
+      _pageController.nextPage(
+          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
-  void _selectDesign() {
-    final List<String> designNames = [
-      "DesignOne",
-      "DesignTwo",
-      "DesignThree",
-      "DesignFour",
-      "DesignFive",
-      "DesignSix",
-      "DesignSeven",
-    ];
-
-    String selectedDesign = designNames[currentPage];
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => UserInfoPage(designName: selectedDesign),
-      ),
-    );
+  void _goToPreviousPage() {
+    if (currentIndex > 0) {
+      setState(() => currentIndex--);
+      _pageController.previousPage(
+          duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Select Portfolio Design", style: GoogleFonts.blinker()),
-        centerTitle: true,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      backgroundColor: Color(0xffe0eae5),
+      body: SafeArea(
+        child: isLoading
+            ? Center(
+          child: CircularProgressIndicator(color: Colors.white),
+        )
+            : designList.isEmpty
+            ? Center(
+          child: Text(
+            'No designs found.',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        )
+            : Column(
+          children: [
+            SizedBox(height: 30),
+            FittedBox(
+              child: Text(
+                'Select Portfolio Design',
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+
+            // Card with only WebView
+            Expanded(
               child: PageView.builder(
                 controller: _pageController,
-                itemCount: designUrls.length,
-                physics: NeverScrollableScrollPhysics(), // Disable swipe
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: designList.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    margin: EdgeInsets.zero,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: InAppWebView(
-                        initialUrlRequest: URLRequest(
-                          url: WebUri(designUrls[index]),
+                  final design = designList[index];
+                  final encodedUrl = Uri.encodeFull(design['PortfolioUrl']);
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black54, width: 2),
+                        borderRadius: BorderRadius.circular(22),
+                      ),
+                      child: Card(
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        initialOptions: InAppWebViewGroupOptions(
-                          crossPlatform: InAppWebViewOptions(
-                            javaScriptEnabled: true,
+                        margin: EdgeInsets.zero,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: InAppWebView(
+                            initialUrlRequest: URLRequest(
+                              url: WebUri(encodedUrl),
+                            ),
                           ),
                         ),
                       ),
@@ -112,45 +370,80 @@ class _PortfolioDesignSelectionPageState
                 },
               ),
             ),
-          ),
-          SizedBox(height: 20),
-          // Navigation buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                onPressed: _previousPage,
-                icon: Icon(Icons.arrow_back_ios),
-              ),
-              IconButton(
-                onPressed: _nextPage,
-                icon: Icon(Icons.arrow_forward_ios),
-              ),
-            ],
-          ),
-          SizedBox(height: 20),
-          // Select button
-          ElevatedButton(
-            onPressed: _selectDesign,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-            ),
-            child: Text(
-              "Select",
-              style: GoogleFonts.blinker(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+
+
+            SizedBox(height: 20),
+
+            // Design Name & Price (based on currentIndex)
+            Text(
+              designList[currentIndex]['PortfolioName'],
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.blue,
               ),
             ),
-          ),
-          SizedBox(height: 20),
-        ],
+            SizedBox(height: 4),
+            Text(
+              designList[currentIndex]['PortfolioPrice'],
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: Colors.grey[800],
+              ),
+            ),
+            SizedBox(height: 15),
+
+
+            // Navigation Arrows
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: _goToPreviousPage,
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.blue),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {
+                    final selectedDesign = designList[currentIndex];
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserInfoPage(
+                          designName: selectedDesign['PortfolioName'],
+                          designPrice: selectedDesign['PortfolioPrice'],
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Select This Design',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                IconButton(
+                  onPressed: _goToNextPage,
+                  icon: Icon(Icons.arrow_forward_ios, color: Colors.blue),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
       ),
     );
+
   }
 }
