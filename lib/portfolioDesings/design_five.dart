@@ -11,16 +11,16 @@ import '../pages/fullscreenimageview.dart';
 import '../pages/marqueechips.dart';
 import '../pages/ProjectSliders/projectsliderfordesigntwo.dart';
 
-class DesignThree extends StatefulWidget {
+class DesignFive extends StatefulWidget {
   final Map<String, dynamic> userData;
 
-  const DesignThree({super.key, required this.userData});
+  const DesignFive({super.key, required this.userData});
 
   @override
-  _DesignThreeState createState() => _DesignThreeState();
+  _DesignFiveState createState() => _DesignFiveState();
 }
 
-class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin {
+class _DesignFiveState extends State<DesignFive> with TickerProviderStateMixin {
   late AnimationController _floatingController;
   late AnimationController _cardAnimationController;
   late Animation<double> _floatingAnimation;
@@ -339,7 +339,7 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
               child: Column(
                 children: [
                   SizedBox(height: 60),
-
+                  
                   // Greeting Section
                   AnimatedBuilder(
                     animation: _cardOpacityAnimation,
@@ -372,9 +372,9 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
                       );
                     },
                   ),
-
+                  
                   SizedBox(height: 40),
-
+                  
                   // Main Hero Section
                   LayoutBuilder(
                     builder: (context, constraints) {
@@ -555,15 +555,15 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
                       }
                     },
                   ),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Stats Section
                   _buildSectionHeader("Statistics", "My Journey So Far"),
                   _buildStatsSection(),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Skills Section
                   _buildSectionHeader("Skills", "What I Work With"),
                   _buildGlassMorphismContainer(
@@ -599,30 +599,30 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
                       ),
                     ),
                   ),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Projects Section
                   _buildSectionHeader("Portfolio", "Featured Projects"),
                   ProjectSliderForDesignTwo(projects: widget.userData["projects"]),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Achievements Section
                   _buildSectionHeader("Recognition", "My Achievements"),
                   AchievementSliderForDesignTwo(achievements: widget.userData["achievements"]),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Experience Section
                   _buildSectionHeader("Journey", "My Experience"),
                   ExperienceSectionForDesignTwo(experiences: widget.userData["experiences"] as List<dynamic>),
-
+                  
                   SizedBox(height: 80),
-
+                  
                   // Connect Section
                   ConnectWithMedesignTwo(userData: widget.userData),
-
+                  
                   SizedBox(height: 60),
                 ],
               ),

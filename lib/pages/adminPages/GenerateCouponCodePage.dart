@@ -143,7 +143,7 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1f1f1f),
+      backgroundColor: const Color(0xffe0eae5),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(18.0),
@@ -155,36 +155,79 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                 style: GoogleFonts.blinker(
                   fontSize: 36,
                   fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                  color: Colors.blue,
                 ),
               ),
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Column(
                   children: [
                     TextField(
+
                       controller: shopNameController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                        labelText: 'Shop Name',
-                        labelStyle: TextStyle(color: Colors.white70),
-                        border: OutlineInputBorder(),
+                      style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      decoration: InputDecoration(
+                        labelText: 'Enter Shop Name',
+                        labelStyle: GoogleFonts.blinker(
+                          color: Colors.black54,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.grey.shade700),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.blue, width: 2),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
                     TextField(
                       controller: rupeesOffController,
                       keyboardType: TextInputType.number,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                        labelText: 'Rupees Off',
-                        labelStyle: TextStyle(color: Colors.white70),
-                        border: OutlineInputBorder(),
+                      style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      decoration: InputDecoration(
+                        labelText: 'Rupees Off (Discount)',
+                        labelStyle: GoogleFonts.blinker(
+                          color: Colors.black54,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.blue),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.grey.shade700),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(color: Colors.blue, width: 2),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -194,13 +237,17 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                           child: ElevatedButton(
                             onPressed: pickDate,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white10,
+                              backgroundColor: Colors.blue,
                             ),
                             child: Text(
                               selectedDate == null
                                   ? 'Select Date'
                                   : DateFormat('dd-MM-yyyy').format(selectedDate!),
-                              style: const TextStyle(color: Colors.white),
+                              style: GoogleFonts.blinker(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -209,13 +256,17 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                           child: ElevatedButton(
                             onPressed: pickTime,
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white10,
+                              backgroundColor: Colors.blue,
                             ),
                             child: Text(
                               selectedTime == null
                                   ? 'Select Time'
                                   : selectedTime!.format(context),
-                              style: const TextStyle(color: Colors.white),
+                              style: GoogleFonts.blinker(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -234,7 +285,12 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                           _isLoadingLocation = false;
                         });
                       },
-                      child: Text("Get Location"),
+                      child: Text("Get Location",
+                          style: GoogleFonts.blinker(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),),
                     ),
 
                     SizedBox(height: 10),
@@ -250,7 +306,7 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                     ElevatedButton(
                       onPressed: createAndStoreCouponCode,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xfffaa629),
+                        backgroundColor: Colors.blue,
                         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -260,7 +316,7 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                         "Generate Coupon Code",
                         style: GoogleFonts.blinker(
                           fontSize: 20,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -286,13 +342,13 @@ class _GenerateCouponCodePageState extends State<GenerateCouponCodePage> {
                           ),
                           color: Colors.white,
                           child: ListTile(
-                            leading: const Icon(Icons.discount, color: Colors.orange),
+                            leading: const Icon(Icons.discount, color: Colors.black54),
                             title: Text(
                               generatedCodes[index],
                               style: GoogleFonts.blinker(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black,
+                                color: Colors.black54,
                               ),
                             ),
                           ),

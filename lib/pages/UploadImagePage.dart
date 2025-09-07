@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -146,7 +147,20 @@ class _UploadImagePageState extends State<UploadImagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Upload Payment Qr Image")),
+      backgroundColor: const Color(0xffe0eae5),
+      appBar: AppBar(
+        backgroundColor: const Color(0xffe0eae5),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(
+          "Upload Payment Qr Image",
+          style: GoogleFonts.blinker(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -166,8 +180,15 @@ class _UploadImagePageState extends State<UploadImagePage> {
                 : const SizedBox(),
             const SizedBox(height: 20),
             ElevatedButton.icon(
-              icon: const Icon(Icons.image),
-              label: const Text("Select Image"),
+              icon: const Icon(Icons.image, color: Colors.white,),
+              label: Text(
+                "Select Image",
+                style: GoogleFonts.blinker(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               onPressed: _pickImage,
             ),
             const SizedBox(height: 10),
@@ -178,8 +199,15 @@ class _UploadImagePageState extends State<UploadImagePage> {
                 width: 18,
                 child: CircularProgressIndicator(strokeWidth: 2),
               )
-                  : const Icon(Icons.upload),
-              label: const Text("Upload"),
+                  : const Icon(Icons.upload, color: Colors.white,),
+              label: Text(
+                "Upload Image",
+                style: GoogleFonts.blinker(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               onPressed: _isLoading ? null : _uploadImage,
             ),
           ],

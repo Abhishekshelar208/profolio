@@ -237,6 +237,23 @@ class _UserInfoPageState extends State<UserInfoPage> {
     }
   }
 
+  // void _pickResumeFile() async {
+  //   // Allow only PDF files
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
+  //     type: FileType.custom,
+  //     allowedExtensions: ['pdf'],
+  //   );
+  //
+  //   if (result != null && result.files.single.path != null) {
+  //     setState(() {
+  //       _resumeFile = File(result.files.single.path!);
+  //     });
+  //   } else {
+  //     // User canceled the picker or no file was selected
+  //     print("No file selected");
+  //   }
+  // }
+
   void _pickResumeFile() async {
     // Allow only PDF files
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -245,14 +262,28 @@ class _UserInfoPageState extends State<UserInfoPage> {
     );
 
     if (result != null && result.files.single.path != null) {
-      setState(() {
-        _resumeFile = File(result.files.single.path!);
-      });
+      final file = File(result.files.single.path!);
+      final int sizeInBytes = await file.length();
+
+      if (sizeInBytes <= 1024 * 1024) { // Check if file is ≤ 1MB
+        setState(() {
+          _resumeFile = file;
+        });
+      } else {
+        // File too large: show a warning
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please select a PDF smaller than 1MB'),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
     } else {
-      // User canceled the picker or no file was selected
+      // User canceled or no file selected
       print("No file selected");
     }
   }
+
 
 
 
@@ -404,6 +435,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
       }
 
 
+
       DatabaseReference userRef = FirebaseDatabase.instance.ref("Portfolio/$portfolioId");
 
       Map<String, dynamic> userData = {
@@ -441,6 +473,25 @@ class _UserInfoPageState extends State<UserInfoPage> {
       // await counterRef.set(currentCounter + 1);
 
 
+
+
+      // // 🔍 Check and update in ProFolioUsersLists
+      // final usersListRef = FirebaseDatabase.instance.ref("ProFolioUsersLists");
+      // final snapshot = await usersListRef.get();
+      //
+      // if (snapshot.exists) {
+      //   final usersMap = Map<String, dynamic>.from(snapshot.value as Map);
+      //
+      //   usersMap.forEach((key, value) async {
+      //     if ((value['EmailID'] ?? '').toString().toLowerCase() == email.toLowerCase()) {
+      //       await usersListRef.child(key).update({
+      //         "PortfolioID": portfolioId,
+      //       });
+      //     }
+      //   });
+      // }
+
+
       Utils().toastMessage("Your Portfolio is created Successfully.");
 
       Navigator.pushReplacement(
@@ -460,6 +511,10 @@ class _UserInfoPageState extends State<UserInfoPage> {
       });
     }
   }
+
+
+
+
 
 
 
@@ -502,7 +557,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                   backgroundColor: Colors.blue,
                   backgroundImage: _imageFile != null ? FileImage(_imageFile!) : null,
                   child: _imageFile == null
-                      ? Icon(Icons.person, size: 50, color: Colors.white)
+                      ? Image.asset("lib/assets/icons/user.png",color: Colors.white,)
                       : null,
                 ),
               ),
@@ -518,9 +573,26 @@ class _UserInfoPageState extends State<UserInfoPage> {
               SizedBox(
                 height: 10,
               ),
+              FittedBox(
+                child: Text("Demo Form is Already Filled.", style: GoogleFonts.blinker(
+                  color: Colors.redAccent,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              FittedBox(
+                child: Text("Just Upload Profile Pic & Resume.", style: GoogleFonts.blinker(
+                  color: Colors.redAccent,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               _buildTextField(nameController, "Name", Icons.person,
                   isEnabled: false, // disables the field
-                  defaultValue: "Ex: Abhishek Shelar", // sets default value
+                  defaultValue: "Abhishek Shelar", // sets default value
                   ),
               _buildTextField(aboutyourselfController, "About Yourself", Icons.book,
                 isEnabled: false, // disables the field
@@ -535,9 +607,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
               ),
               TextFormField(
                 enabled: false, // ✅ Disables the field
-                controller: TextEditingController(text: "Ex: 98768986543"), // ✅ Sets default value
+                controller: TextEditingController(text: "Ex: 2"), // ✅ Sets default value
                 style: GoogleFonts.blinker(
-                  color: Colors.grey[400],
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -546,12 +618,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 decoration: InputDecoration(
                   labelText: "No of Internship Completed",
                   labelStyle: GoogleFonts.blinker(
-                    color: Colors.white70,
+                    color: Colors.black54,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   filled: true,
-                  fillColor: Color(0xff1E1E1E),
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Color(0xfffaa629)),
@@ -592,7 +664,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 enabled: false, // ✅ Disables the field
                 controller: TextEditingController(text: "Ex: 8"), // ✅ Sets default value
                 style: GoogleFonts.blinker(
-                  color: Colors.grey[400],
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -601,12 +673,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 decoration: InputDecoration(
                   labelText: "No of Skills",
                   labelStyle: GoogleFonts.blinker(
-                    color: Colors.white70,
+                    color: Colors.black54,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   filled: true,
-                  fillColor: Color(0xff1E1E1E),
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Color(0xfffaa629)),
@@ -760,7 +832,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 enabled: false, // ✅ Disables the field
                 controller: TextEditingController(text: "Ex: 18"), // ✅ Sets default value
                 style: GoogleFonts.blinker(
-                  color: Colors.grey[400],
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -769,12 +841,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 decoration: InputDecoration(
                   labelText: 'Months of Experience',
                   labelStyle: GoogleFonts.blinker(
-                    color: Colors.white70,
+                    color: Colors.black54,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   filled: true,
-                  fillColor: Color(0xff1E1E1E),
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Color(0xfffaa629)),
@@ -860,7 +932,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 enabled: false, // ✅ Disables the field
                 controller: TextEditingController(text: "Ex: 5"), // ✅ Sets default value
                 style: GoogleFonts.blinker(
-                  color: Colors.grey[400],
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -869,12 +941,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 decoration: InputDecoration(
                   labelText: 'No of Project Completed',
                   labelStyle: GoogleFonts.blinker(
-                    color: Colors.white70,
+                    color: Colors.black54,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                   filled: true,
-                  fillColor: Color(0xff1E1E1E),
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                     borderSide: BorderSide(color: Color(0xfffaa629)),

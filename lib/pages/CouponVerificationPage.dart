@@ -78,17 +78,18 @@ class _CouponVerificationPageState extends State<CouponVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
         title: Text(
           "Coupon Code",
           style: GoogleFonts.blinker(
+            fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: const Color(0xfffaa629),
+            color: Colors.black,
           ),
         ),
-        backgroundColor: const Color(0xff121212),
-        iconTheme: const IconThemeData(color: Color(0xfffaa629)),
+        backgroundColor: const Color(0xffe0eae5),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -97,17 +98,30 @@ class _CouponVerificationPageState extends State<CouponVerificationPage> {
             TextField(
               controller: couponController,
               style: GoogleFonts.blinker(
-                color: Colors.white,
+                color: Colors.black54,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
               decoration: InputDecoration(
                 labelText: "Enter Coupon Code (optional)",
-                labelStyle: GoogleFonts.blinker(color: Colors.white70),
+                labelStyle: GoogleFonts.blinker(
+                  color: Colors.black54,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
                 filled: true,
-                fillColor: const Color(0xff1E1E1E),
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade700),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
                 ),
               ),
             ),
@@ -117,16 +131,16 @@ class _CouponVerificationPageState extends State<CouponVerificationPage> {
                 : ElevatedButton(
               onPressed: verifyCoupon,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xfffaa629),
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 40, vertical: 14),
+                    horizontal: 40, vertical: 10),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
               ),
               child: Text(
                 "Verify",
                 style: GoogleFonts.blinker(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -138,9 +152,10 @@ class _CouponVerificationPageState extends State<CouponVerificationPage> {
               child: Text(
                 "I don’t have Coupon Code",
                 style: GoogleFonts.blinker(
-                  color: Colors.white70,
+                  color: Colors.blue,
                   fontSize: 16,
                   decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -149,8 +164,9 @@ class _CouponVerificationPageState extends State<CouponVerificationPage> {
               Text(
                 resultMessage!,
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
           ],

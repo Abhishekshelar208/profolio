@@ -71,7 +71,7 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
               pw.Text('Coupon Code: ${txn['couponCode']}'),
               pw.SizedBox(height: 10),
               pw.Divider(),
-              pw.Text('Final Amount Paid: ₹${txn['finalAmount']}', style: pw.TextStyle(fontSize: 18)),
+              pw.Text('Final Amount Paid: Rs:${txn['finalAmount']}/-', style: pw.TextStyle(fontSize: 18)),
               pw.SizedBox(height: 20),
               pw.Text('Thank you for your payment!', style: pw.TextStyle(fontStyle: pw.FontStyle.italic)),
             ],
@@ -86,23 +86,38 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        title: Text(
-          'My Transactions',
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+        iconTheme: IconThemeData(
+          color: Colors.black,
         ),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          "My Transactions",
+          style: GoogleFonts.blinker(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: const Color(0xffe0eae5),
         foregroundColor: Colors.white,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _userTransactions.isEmpty
-          ? const Center(child: Text("No transactions yet."))
+          ? Center(child: Text("No transactions yet.",
+        style: GoogleFonts.blinker(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.black54,
+        ),
+      ))
           : ListView.builder(
         itemCount: _userTransactions.length,
         itemBuilder: (context, index) {
           final txn = _userTransactions[index];
           return Card(
+            color: Colors.white,
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             elevation: 4,
@@ -112,24 +127,36 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.payment, color: Colors.purple),
+                    leading: const Icon(Icons.payment, color: Colors.blue),
                     title: Text(
                       "₹${txn['finalAmount']} - ${txn['couponCode'] ?? 'N/A'}",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                      style: GoogleFonts.blinker(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
                     ),
                     subtitle: Text(
                       "Txn ID: ${txn['transactionId']}\n${txn['date']} at ${txn['time']}",
-                      style: GoogleFonts.poppins(fontSize: 13),
+                      style: GoogleFonts.blinker(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black54,
+                      ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
                     child: ElevatedButton.icon(
                       onPressed: () => _generatePdf(txn),
-                      icon: const Icon(Icons.picture_as_pdf),
-                      label: const Text("Bill"),
+                      label: Text("Receipt",
+                        style: GoogleFonts.blinker(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: Colors.blue,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
                       ),

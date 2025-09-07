@@ -1,155 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:flutter/foundation.dart'; // For kIsWeb
-// import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:profolio/pages/portfoliolist.dart';
-// import 'package:profolio/pages/session_manager.dart';
-// import 'package:profolio/pages/userinfopage.dart';
-// import 'package:profolio/pages/utils.dart';
-//
-// class CreateStudentID extends StatefulWidget {
-//   CreateStudentID({Key? key}) : super(key: key);
-//
-//   @override
-//   State<CreateStudentID> createState() => _CreateStudentIDState();
-// }
-//
-// class _CreateStudentIDState extends State<CreateStudentID> {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//   bool isLoading = false;
-//
-//   void _handleGoogleSignIn(BuildContext context) async {
-//     try {
-//       GoogleAuthProvider googleAuthProvider = GoogleAuthProvider();
-//       if (kIsWeb) {
-//         // For web, use signInWithPopup
-//         await FirebaseAuth.instance
-//             .signInWithPopup(googleAuthProvider)
-//             .then((userCredential) {
-//           if (userCredential.user != null) {
-//             // Navigate to the next page after successful sign-in
-//             Navigator.pushReplacement(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (context) => PortfolioListPage(),
-//               ),
-//             );
-//           }
-//         });
-//       } else {
-//         // For mobile, use signInWithProvider
-//         await FirebaseAuth.instance
-//             .signInWithProvider(googleAuthProvider)
-//             .then((userCredential) {
-//           if (userCredential.user != null) {
-//             // Navigate to the next page after successful sign-in
-//             Navigator.pushReplacement(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (context) => PortfolioListPage(),
-//               ),
-//             );
-//           }
-//         });
-//       }
-//     } catch (error) {
-//       print("Error: $error");
-//       ScaffoldMessenger.of(context)
-//           .showSnackBar(SnackBar(content: Text("Error: $error")));
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final screenWidth = MediaQuery.of(context).size.width;
-//     final screenHeight = MediaQuery.of(context).size.height;
-//     return Scaffold(
-//       body: Container(
-//         height: screenHeight,
-//         width: screenWidth,
-//         decoration: const BoxDecoration(
-//           gradient: LinearGradient(
-//             begin: Alignment.topRight,
-//             end: Alignment.bottomLeft,
-//             colors: [
-//               Colors.transparent,
-//               Colors.transparent,
-//             ],
-//           ),
-//         ),
-//         child: SingleChildScrollView(
-//           child: Padding(
-//             padding: EdgeInsets.symmetric(
-//               vertical: screenHeight * 0.05,
-//               horizontal: screenWidth * 0.04,
-//             ),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 SizedBox(height: screenHeight * 0.05),
-//                 Center(
-//                   child: Container(
-//                     height: 110,
-//                     width: 110,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(55),
-//                       border: Border.all(
-//                         color: Colors.grey,
-//                         width: 2.0,
-//                       ),
-//                     ),
-//                     child: ClipRRect(
-//                       borderRadius: BorderRadius.circular(55),
-//                       child: Image.asset(
-//                         'lib/assets/images/krishna.png',
-//                         height: 110,
-//                         width: 110,
-//                         fit: BoxFit.cover,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 SizedBox(height: screenHeight * 0.012),
-//                 Text(
-//                   "EventSphere",
-//                   style: TextStyle(
-//                     color: Colors.white60,
-//                     fontSize: screenWidth * 0.070,
-//                     fontWeight: FontWeight.w600,
-//                     fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-//                   ),
-//                 ),
-//                 SizedBox(height: screenHeight * 0.055),
-//                 Center(
-//                   child: ElevatedButton.icon(
-//                     icon: Image.asset(
-//                       'lib/assets/images/googleicon.png',
-//                       height: 24,
-//                     ),
-//                     label: Text("Sign up with Google"),
-//                     onPressed: () {
-//                       _handleGoogleSignIn(context);
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                       backgroundColor: Colors.white,
-//                       foregroundColor: Colors.black,
-//                       padding:
-//                       EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
@@ -169,26 +17,205 @@ class _CreateStudentIDState extends State<CreateStudentID> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final PageController _pageController = PageController();
   int currentPage = 0;
+  bool _isLoading = false; // <-- ADD this
 
-  void _handleGoogleSignIn(BuildContext context) async {
+  String? _enteredName;
+  String? _enteredContact;
+
+  void _showFormBeforeSignIn() {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController contactController = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        title: Text(
+          "Enter Your Details",
+          style: GoogleFonts.blinker(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "⚠️ Enter correct details. We are not responsible for incorrect information.",
+              style: GoogleFonts.blinker(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              style: GoogleFonts.blinker(
+                color: Colors.black54,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: "Full Name",
+                labelStyle: GoogleFonts.blinker(
+                  color: Colors.black54,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade700),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextField(
+              style: GoogleFonts.blinker(
+                color: Colors.black54,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+              controller: contactController,
+              keyboardType: TextInputType.phone,
+              decoration: InputDecoration(
+                labelText: "Contact No",
+                labelStyle: GoogleFonts.blinker(
+                  color: Colors.black54,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Colors.blue),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade700),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: Colors.blue, width: 2),
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+            ),
+            onPressed: () {
+              String name = nameController.text.trim();
+              String contact = contactController.text.trim();
+
+              if (name.isNotEmpty && contact.isNotEmpty) {
+                _enteredName = name;
+                _enteredContact = contact;
+                Navigator.pop(context); // Close dialog
+                _handleGoogleSignIn(); // Now trigger Google Sign-In
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Please fill all fields")),
+                );
+              }
+            },
+            child: Text("Finish",
+              style: GoogleFonts.blinker(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _handleGoogleSignIn() async {
     try {
+      setState(() => _isLoading = true); // show loading
+
       GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
       if (kIsWeb) {
-        await FirebaseAuth.instance.signInWithPopup(googleProvider);
+        await _auth.signInWithPopup(googleProvider);
       } else {
-        await FirebaseAuth.instance.signInWithProvider(googleProvider);
+        await _auth.signInWithProvider(googleProvider);
       }
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => PortfolioListPage()),
-      );
+      User? user = _auth.currentUser;
+      if (user != null && _enteredName != null && _enteredContact != null) {
+        await _saveToDatabase(_enteredName!, _enteredContact!, user.email ?? "");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => PortfolioListPage()),
+        );
+      }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: $e")),
       );
+    } finally {
+      setState(() => _isLoading = false); // hide loading after process
     }
   }
+
+
+
+  // void _saveToDatabase(String name, String contact, String email) async {
+  //   final dbRef = FirebaseDatabase.instance.ref().child("ProFolioUsersLists");
+  //
+  //   final newEntryRef = dbRef.push(); // Generates a unique key
+  //
+  //   await newEntryRef.set({
+  //     "Name": name,
+  //     "ContactNo": contact,
+  //     "EmailID": email,
+  //   });
+  // }
+
+
+
+
+  Future<void> _saveToDatabase(String name, String contact, String email) async {
+    final dbRef = FirebaseDatabase.instance.ref().child("ProFolioUsersLists");
+
+    final snapshot = await dbRef.orderByChild("EmailID").equalTo(email).once();
+
+    if (snapshot.snapshot.value == null) {
+      // Only add to database if email doesn't exist
+      final newEntryRef = dbRef.push();
+      await newEntryRef.set({
+        "Name": name,
+        "ContactNo": contact,
+        "EmailID": email,
+      });
+    }
+  }
+
+
+
+
 
   void _nextPage() {
     if (currentPage < 2) {
@@ -230,7 +257,7 @@ class _CreateStudentIDState extends State<CreateStudentID> {
       children: [
         FittedBox(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20), // You can adjust the radius
+            borderRadius: BorderRadius.circular(20),
             child: Lottie.asset(
               lottiePath,
               width: width * 0.85,
@@ -265,40 +292,22 @@ class _CreateStudentIDState extends State<CreateStudentID> {
         ),
         const SizedBox(height: 40),
         if (currentPage == 2)
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(color: Colors.black12, width: 1.5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 2,
-                  blurRadius: 6,
-                  offset: Offset(0, 3), // subtle shadow below
-                ),
-              ],
+          ElevatedButton(
+            onPressed: _showFormBeforeSignIn,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xfffaa629),
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 12),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             ),
-            child: ElevatedButton.icon(
-              icon: Image.asset(
-                'lib/assets/images/googleicon.png',
-                height: 24,
-              ),
-              label: Text("Sign up with Google"),
-              onPressed: () => _handleGoogleSignIn(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 12),
-                elevation: 0, // to avoid double shadow
-                shadowColor: Colors.transparent, // disables default ElevatedButton shadow
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
+            child: Text(
+              "Continue",
+              style: GoogleFonts.blinker(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
               ),
             ),
           )
-
         else
           ElevatedButton(
             onPressed: _nextPage,
@@ -321,20 +330,38 @@ class _CreateStudentIDState extends State<CreateStudentID> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      backgroundColor: const Color(0xfff5f5f7),
-      body: SafeArea(
-        child: PageView(
-          controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
-          children: _buildSlides(screenWidth),
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: const Color(0xffe0eae5),
+          body: SafeArea(
+            child: PageView(
+              controller: _pageController,
+              physics: NeverScrollableScrollPhysics(),
+              children: _buildSlides(screenWidth),
+            ),
+          ),
         ),
-      ),
+
+        // 👇 Loading Overlay
+        if (_isLoading)
+          Container(
+            color: Colors.black.withOpacity(0.5),
+            child: Center(
+              child: Lottie.asset(
+                'lib/assets/lottieAnimations/rocketAnimation.json', // <-- add your file here
+                width: 300,
+                height: 300,
+                repeat: true,
+              ),
+            ),
+          ),
+      ],
     );
   }
+
 }

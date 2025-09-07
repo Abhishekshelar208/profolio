@@ -12,7 +12,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_inappwebview_windows
   geolocator_windows
   printing
-  rive_common
   share_plus
   url_launcher_windows
 )

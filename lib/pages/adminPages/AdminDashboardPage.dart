@@ -48,10 +48,11 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffe0eae5),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF6A11CB), Color(0xFF2575FC)],
+            colors: [Color(0xffe0eae5), Color(0xffe0eae5)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -72,7 +73,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 child: Text(
                   "Admin Dashboard",
                   style: GoogleFonts.blinker(
-                    color: Colors.white,
+                    color: Colors.blue,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
@@ -84,7 +85,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
@@ -93,7 +94,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                       Text(
                         "📊 Total Portfolios: $totalPortfolios",
                         style: GoogleFonts.blinker(
-                          color: Colors.white,
+                          color: Colors.blue,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
@@ -102,7 +103,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                       Text(
                         "🧩 Design Statistics",
                         style: GoogleFonts.blinker(
-                          color: Colors.white,
+                          color: Colors.black54,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -140,14 +141,14 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                                       Text(
                                         designName,
                                         style: GoogleFonts.blinker(
-                                          color: Colors.black,
+                                          color: Colors.blue,
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       Text("Count : $count",
                                         style: GoogleFonts.blinker(
-                                          color: Colors.black,
+                                          color: Colors.black54,
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                         ),

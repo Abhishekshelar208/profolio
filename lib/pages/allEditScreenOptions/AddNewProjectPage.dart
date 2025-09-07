@@ -149,12 +149,12 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
     return InputDecoration(
       labelText: label,
       labelStyle: GoogleFonts.blinker(
-        color: Colors.white70,
+        color: Colors.black54,
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
       filled: true,
-      fillColor: const Color(0xff2c2c2c),
+      fillColor: Colors.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -164,15 +164,18 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        backgroundColor: const Color(0xff121212),
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: const Color(0xffe0eae5),
         title: Text(
           "Add New Project",
           style: GoogleFonts.blinker(
-            fontSize: 22,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: const Color(0xfffaa629),
+            color: Colors.black,
           ),
         ),
       ),
@@ -184,7 +187,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
             children: [
               TextFormField(
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -196,7 +199,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
               TextFormField(
                 maxLines: 4,
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -207,7 +210,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
               const SizedBox(height: 12),
               TextFormField(
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -218,7 +221,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
               const SizedBox(height: 12),
               TextFormField(
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -229,7 +232,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
               const SizedBox(height: 12),
               TextFormField(
                 style: GoogleFonts.blinker(
-                  color: Colors.white,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
@@ -242,17 +245,17 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
                 children: [
                   ElevatedButton.icon(
                     onPressed: _pickImage,
-                    icon: const Icon(Icons.image, color: Colors.black),
+                    icon: const Icon(Icons.image, color: Colors.white),
                     label: Text(
                       "Pick Image",
                       style: GoogleFonts.blinker(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xfffaa629),
+                      backgroundColor: Colors.blue,
                       padding: const EdgeInsets.symmetric(
                           vertical: 12, horizontal: 16),
                       shape: RoundedRectangleBorder(
@@ -278,17 +281,17 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: _submitProject,
-                  icon: const Icon(Icons.add, color: Colors.black),
+                  icon: const Icon(Icons.add, color: Colors.white, size: 22,),
                   label: Text(
                     "Add Project",
                     style: GoogleFonts.blinker(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xfffaa629),
+                    backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),

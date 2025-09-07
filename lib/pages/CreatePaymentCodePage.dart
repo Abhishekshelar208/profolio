@@ -145,16 +145,18 @@ Team ProFolio
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
         title: Text(
           "Create Payment Code",
           style: GoogleFonts.blinker(
-            color: const Color(0xfffaa629),
+            color: Colors.black,
             fontWeight: FontWeight.bold,
+            fontSize: 24,
           ),
         ),
-        backgroundColor: const Color(0xff121212),
-        iconTheme: const IconThemeData(color: Color(0xfffaa629)),
+        backgroundColor: const Color(0xffe0eae5),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -164,17 +166,17 @@ Team ProFolio
           children: [
             ElevatedButton.icon(
               onPressed: createAndShareCode,
-              icon: const Icon(Icons.key, color: Colors.black),
+              icon: const Icon(Icons.key, color: Colors.white),
               label: Text(
                 "Generate & Share Code",
                 style: GoogleFonts.blinker(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xfffaa629),
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
@@ -190,20 +192,24 @@ Team ProFolio
                 itemBuilder: (context, index) {
                   final item = codeList[index];
                   return Card(
+                    color: Colors.white,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: ListTile(
-                      leading: const Icon(Icons.lock),
+                      leading: const Icon(Icons.lock, color: Colors.black54,),
                       title: Text(
                         item['code'],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
+                          color: Colors.blue,
                           fontSize: 18,
                         ),
                       ),
-                      subtitle: Text("Used: ${item['isUsed']}"),
+                      subtitle: Text("Used: ${item['isUsed']}",style: TextStyle(
+                        color: Colors.black,
+                      ),),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
                         onPressed: () => deleteCode(item['code']),

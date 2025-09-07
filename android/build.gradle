@@ -1,16 +1,13 @@
-
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.0' // Check if your Gradle version is compatible
-        classpath 'com.google.gms:google-services:4.3.15' // Add this line if missing
+        classpath 'com.android.tools.build:gradle:8.1.0'
+        classpath 'com.google.gms:google-services:4.3.15'
     }
-
 }
-
 
 allprojects {
     repositories {
@@ -19,17 +16,22 @@ allprojects {
     }
 }
 
+// Define a new build directory for the root project
 def newBuildDir = rootProject.layout.buildDirectory.dir("../../build").get()
 rootProject.layout.buildDirectory.set(newBuildDir)
 
+// Define build directories for subprojects
 subprojects {
     def newSubprojectBuildDir = newBuildDir.dir(project.name)
     project.layout.buildDirectory.set(newSubprojectBuildDir)
 }
 
-subprojects {
-    project.evaluationDependsOn(":app")
-}
+// ✅ Remove the afterEvaluate block
+// Just set the NDK version directly in the app-level build.gradle instead
+// (app/build.gradle → inside the android { } block)
+// android {
+//     ndkVersion "29.0.13846066"
+// }
 
 tasks.register("clean", Delete) {
     delete rootProject.layout.buildDirectory

@@ -214,16 +214,18 @@ class _PaymentCodeVerificationPageState
     int finalAmount = originalPrice - discount;
 
     return Scaffold(
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
         title: Text(
           "Payment Verification",
           style: GoogleFonts.blinker(
+            fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: const Color(0xfffaa629),
+            color: Colors.black,
           ),
         ),
-        backgroundColor: const Color(0xff121212),
-        iconTheme: const IconThemeData(color: Color(0xfffaa629)),
+        backgroundColor: const Color(0xffe0eae5),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
@@ -233,7 +235,8 @@ class _PaymentCodeVerificationPageState
               "You have to pay ₹$finalAmount to the following QR code",
               style: GoogleFonts.blinker(
                 fontSize: 18,
-                color: Colors.white,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
@@ -243,7 +246,7 @@ class _PaymentCodeVerificationPageState
                 "🎉 You saved ₹$discount!",
                 style: GoogleFonts.blinker(
                   fontSize: 16,
-                  color: Colors.greenAccent,
+                  color: Colors.green,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -331,7 +334,7 @@ class _PaymentCodeVerificationPageState
             const SizedBox(height: 32),
             TextField(
               style: GoogleFonts.blinker(
-                color: Colors.white,
+                color: Colors.black54,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -339,15 +342,15 @@ class _PaymentCodeVerificationPageState
               decoration: InputDecoration(
                 labelText: 'Enter Transaction ID',
                 labelStyle: GoogleFonts.blinker(
-                  color: Colors.white70,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
                 filled: true,
-                fillColor: Color(0xff1E1E1E),
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xfffaa629)),
+                  borderSide: BorderSide(color: Colors.blue),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -355,10 +358,10 @@ class _PaymentCodeVerificationPageState
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
                 ),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.send, color: Color(0xfffaa629)),
+                  icon: Icon(Icons.send, color: Colors.blue),
                   onPressed: () {
                     final txnId = transactionIdController.text.trim();
                     if (txnId.isEmpty) {
@@ -375,11 +378,11 @@ class _PaymentCodeVerificationPageState
             const SizedBox(height: 6),
             TextButton.icon(
               onPressed: pickImageAndExtractTransactionID,
-              icon: const Icon(Icons.upload_file, color: Color(0xfffaa629)),
+              icon: const Icon(Icons.upload_file, color: Colors.blue),
               label: Text(
                 "Upload Payment Screenshot",
                 style: GoogleFonts.blinker(
-                  color: Color(0xfffaa629),
+                  color: Colors.blue,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -387,7 +390,7 @@ class _PaymentCodeVerificationPageState
             const SizedBox(height: 16),
             TextField(
               style: GoogleFonts.blinker(
-                color: Colors.white,
+                color: Colors.black54,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -395,15 +398,15 @@ class _PaymentCodeVerificationPageState
               decoration: InputDecoration(
                 labelText: 'Enter Payment Code',
                 labelStyle: GoogleFonts.blinker(
-                  color: Colors.white70,
+                  color: Colors.black54,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
                 filled: true,
-                fillColor: Color(0xff1E1E1E),
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xfffaa629)),
+                  borderSide: BorderSide(color: Colors.blue),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -411,7 +414,7 @@ class _PaymentCodeVerificationPageState
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
+                  borderSide: BorderSide(color: Colors.blue, width: 2),
                 ),
               ),
             ),
@@ -421,16 +424,16 @@ class _PaymentCodeVerificationPageState
                 : ElevatedButton(
               onPressed: verifyCode,
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xfffaa629),
+                backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(
-                    horizontal: 40, vertical: 14),
+                    horizontal: 40, vertical: 10),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
               ),
               child: Text(
                 "Verify",
                 style: GoogleFonts.blinker(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -439,7 +442,6 @@ class _PaymentCodeVerificationPageState
           ],
         ),
       ),
-      backgroundColor: const Color(0xff121212),
     );
   }
 }

@@ -189,7 +189,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:profolio/abhishek.dart';
 import 'package:profolio/pages/designSelectionPage.dart';
+import 'package:profolio/pages/splash_screen.dart';
 import 'package:profolio/portfolioDesings/designfour.dart';
 import 'package:profolio/portfolioDesings/designone.dart';
 import 'package:profolio/portfolioDesings/designthreee.dart';
@@ -197,9 +199,13 @@ import 'package:profolio/portfolioDesings/designtwo.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'CreatePaymentCodePage.dart';
+import 'DemoVideoPage.dart';
+import 'DeveloperProfilePage.dart';
 import 'TransactionHistoryPage.dart';
 import 'UploadImagePage.dart';
 import 'adminPages/AdminDashboardPage.dart';
+import 'adminPages/AdminMainPage.dart';
+import 'adminPages/AdminPinEntryPage.dart';
 import 'adminPages/AdminPortfolioManagerPage.dart';
 import 'adminPages/GenerateCouponCodePage.dart';
 import 'adminPages/ShopListPage.dart';
@@ -241,30 +247,56 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
     return WillPopScope(
       onWillPop: () async => false, // 🔒 Disables back navigation
       child: Scaffold(
-        backgroundColor: Color(0xffe0eae5),
+        backgroundColor: const Color(0xffe0eae5),
         appBar: AppBar(
-          backgroundColor: Color(0xffe0eae5),
-          title: Text(
-            "The ProFolio",
-            style: GoogleFonts.blinker(
-              fontSize: 26,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          backgroundColor: const Color(0xffe0eae5),
+          title: GestureDetector(
+            onLongPress: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AdminPinEntryPage()),
+              );
+            },
+            child: Text(
+              "The ProFolio",
+              style: GoogleFonts.blinker(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ),
           actions: [
             // IconButton(
-            //   icon: Icon(Icons.space_dashboard_rounded, color: Colors.black54,),
+            //   icon: Icon(Icons.admin_panel_settings_sharp, color: Colors.black54,),
             //   tooltip: "Admin Dashboard",
             //   onPressed: () {
             //     Navigator.push(
             //       context,
-            //       MaterialPageRoute(builder: (context) => const AdminDashboardPage()),
+            //       MaterialPageRoute(builder: (context) => const AdminPinEntryPage()),
             //     );
             //   },
             // ),
             IconButton(
-              icon: Icon(Icons.history, color: Colors.black54,),
+              icon: Image.asset(
+                "lib/assets/icons/clapperboard.png",
+                width: 26, // Set your desired width
+                height: 26, // Set your desired height
+              ),
+              tooltip: "Demo Video",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const DemoVideoPage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Image.asset(
+                "lib/assets/icons/newHistory.png",
+                width: 26, // Set your desired width
+                height: 26, // Set your desired height
+              ),
               tooltip: "Transaction History",
               onPressed: () {
                 Navigator.push(
@@ -274,41 +306,98 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.home, color: Colors.black54,),
-              tooltip: "Coupon Code",
+              icon: Image.asset(
+                "lib/assets/icons/coding.png",
+                width: 26, // Set your desired width
+                height: 26, // Set your desired height
+              ),
+              tooltip: "Developer",
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ShopListPage()),
+                  MaterialPageRoute(builder: (context) => const DeveloperProfilePage()),
                 );
               },
             ),
             IconButton(
-              icon: Icon(Icons.vpn_key, color: Colors.black54,),
-              tooltip: "Create Payment Code",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CreatePaymentCodePage()),
+              icon: Image.asset(
+                "lib/assets/icons/logout.png",
+                width: 26, // Set your desired width
+                height: 26, // Set your desired height
+              ),
+              tooltip: "Logout",
+              onPressed: () async {
+                bool? confirmLogout = await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    backgroundColor: Colors.white,
+                    title: Text("Confirm Logout",
+                      style: GoogleFonts.blinker(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    content: Text("Are you sure you want to logout?",
+                      style: GoogleFonts.blinker(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        child: Text("Cancel",
+                          style: GoogleFonts.blinker(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        onPressed: () => Navigator.of(context).pop(false),
+                      ),
+                      ElevatedButton(
+                        child: Text("Logout",
+                          style: GoogleFonts.blinker(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () => Navigator.of(context).pop(true),
+                      ),
+                    ],
+                  ),
                 );
+
+                if (confirmLogout == true) {
+                  await FirebaseAuth.instance.signOut();
+
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SplashScreen()),
+                  );
+                }
               },
             ),
-            IconButton(
-              icon: Icon(Icons.design_services, color: Colors.black54,),
-              tooltip: "Designs",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AdminPortfolioManagerPage()),
-                );
-              },
-            ),
+
+
 
           ],
         ),
         body: StreamBuilder(
           stream: portfolioQuery.onValue,
           builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                  strokeWidth: 3,
+                ),
+              );
+            }
+
             if (snapshot.hasError) {
               return Center(child: Text("Error: ${snapshot.error}", style: TextStyle(color: Colors.white)));
             }
@@ -425,15 +514,68 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
                                         backgroundColor: Colors.green,
                                         padding: EdgeInsets.zero,
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async {
+
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditPortfolioOptionsScreen(portfolioId: portfolioId),
+                                            builder: (context) => EditPortfolioOptionsScreen(portfolioId: portfolioId),
                                           ),
                                         );
+
+
+
+                                        final user = FirebaseAuth.instance.currentUser;
+                                        if (user == null) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(content: Text("User not logged in")),
+                                          );
+                                          return;
+                                        }
+
+                                        final email = user.email ?? "";
+                                        final usersRef = FirebaseDatabase.instance.ref("ProFolioUsersLists");
+                                        final snapshot = await usersRef.get();
+
+                                        if (snapshot.exists) {
+                                          final data = Map<String, dynamic>.from(snapshot.value as Map);
+
+                                          for (final entry in data.entries) {
+                                            final userKey = entry.key;
+                                            final userData = Map<String, dynamic>.from(entry.value);
+
+                                            if ((userData['EmailID'] ?? '').toString().toLowerCase() == email.toLowerCase()) {
+                                              final portfoliosRef = usersRef.child('$userKey/Portfolios');
+                                              final portfoliosSnap = await portfoliosRef.get();
+
+                                              // Check if portfolioId already exists
+                                              bool alreadyExists = false;
+                                              int nextIndex = 1;
+
+                                              if (portfoliosSnap.exists) {
+                                                final existingPortfolios = Map<String, dynamic>.from(portfoliosSnap.value as Map);
+
+                                                existingPortfolios.forEach((key, value) {
+                                                  if (value.toString() == portfolioId) {
+                                                    alreadyExists = true;
+                                                  }
+                                                });
+
+                                                nextIndex = existingPortfolios.length + 1;
+                                              }
+
+                                              // Only add if it doesn't already exist
+                                              if (!alreadyExists) {
+                                                await portfoliosRef.child('Portfolio_$nextIndex').set(portfolioId);
+                                              }
+
+                                              break;
+                                            }
+                                          }
+                                        }
                                       },
+
+
                                       child: Text(
                                         "Edit",
                                         style: GoogleFonts.blinker(
@@ -466,6 +608,7 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
                                           context: context,
                                           builder: (context) {
                                             return AlertDialog(
+                                              backgroundColor: Colors.white,
                                               title: const Text("Share Portfolio"),
                                               content: SizedBox(
                                                 width: 250,
@@ -481,8 +624,14 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
                                                       ),
                                                       const SizedBox(height: 16),
                                                       ElevatedButton.icon(
-                                                        icon: const Icon(Icons.share, color: Colors.black),
-                                                        label: const Text("Share Link"),
+                                                        icon: const Icon(Icons.share, color: Colors.white),
+                                                        label: Text("Share Link",
+                                                          style: GoogleFonts.blinker(
+                                                            fontSize: 16,
+                                                            fontWeight: FontWeight.bold,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
                                                         onPressed: () {
                                                           Share.share(shareLink,
                                                               subject: "Check out my portfolio");
@@ -494,7 +643,13 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
                                               ),
                                               actions: [
                                                 TextButton(
-                                                  child: const Text("Close"),
+                                                  child: Text("Close",
+                                                    style: GoogleFonts.blinker(
+                                                      fontSize: 18,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.black,
+                                                    ),
+                                                  ),
                                                   onPressed: () => Navigator.of(context).pop(),
                                                 ),
                                               ],
@@ -516,7 +671,11 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
 
                                   // Delete Button
                                   IconButton(
-                                    icon: const Icon(Icons.delete, color: Colors.red),
+                                    icon: Image.asset(
+                                      "lib/assets/icons/trash.png",
+                                      width: 33, // Set your desired width
+                                      height: 33, // Set your desired height
+                                    ),
                                     tooltip: "Delete Portfolio",
                                     onPressed: () {
                                       showDialog(
@@ -593,25 +752,20 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
             return ListView(children: portfolioCards);
           },
         ),
-        floatingActionButton: SizedBox(
-          width: 60,
-          height: 60,
-          child: FloatingActionButton(
-            backgroundColor: Colors.blueAccent,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PortfolioDesignSelectionPage(),
-                ),
-              );
-            },
-            shape: const CircleBorder(), // Explicitly make it circular
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 30,
-            ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>  PortfolioDesignSelectionPage(),
+              ),
+            );
+          },
+          shape: const CircleBorder(), // Explicitly make it circular
+          child: Image.asset(
+            "lib/assets/icons/plus.png",
+            width: 36, // Set your desired width
+            height: 36, // Set your desired height
           ),
         ),
 

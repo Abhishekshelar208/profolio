@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AdminPortfolioManagerPage extends StatefulWidget {
   const AdminPortfolioManagerPage({super.key});
@@ -178,22 +179,48 @@ class _AdminPortfolioManagerPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        title: const Text("Admin Portfolio Manager"),
-        backgroundColor: Colors.deepPurple,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        title: Text(
+          "Manage Designs",
+          style: GoogleFonts.blinker(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+        backgroundColor: const Color(0xffe0eae5),
         actions: [
-          IconButton(
-            onPressed: showAddDialog,
-            icon: const Icon(Icons.add),
-            tooltip: "Add New Design",
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: showAddDialog,
+              child: Text(
+                "Add",
+                style: GoogleFonts.blinker(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
           ),
         ],
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : portfolioData.isEmpty
-          ? const Center(child: Text("No portfolio data found."))
+          ? Center(child: Text(
+        "No Portfolio Data Found",
+        style: GoogleFonts.blinker(
+          color: Colors.black54,
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),)
           : ListView.builder(
         itemCount: portfolioData.length,
         itemBuilder: (context, index) {
@@ -201,6 +228,7 @@ class _AdminPortfolioManagerPageState
           Map data = portfolioData[key]!;
 
           return Card(
+            color: Colors.white,
             margin: const EdgeInsets.symmetric(
                 horizontal: 12, vertical: 8),
             shape: RoundedRectangleBorder(
@@ -210,18 +238,31 @@ class _AdminPortfolioManagerPageState
               contentPadding: const EdgeInsets.all(12),
               title: Text(
                 data['PortfolioName'] ?? 'Unnamed',
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.blinker(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Price: ₹${data['PortfolioPrice']}"),
+                    Text("Price: ₹${data['PortfolioPrice']}",
+                      style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
                     Text(
                       "URL: ${data['PortfolioUrl']}",
-                      style: const TextStyle(color: Colors.blue),
+                      style: GoogleFonts.blinker(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
@@ -232,7 +273,7 @@ class _AdminPortfolioManagerPageState
                 children: [
                   IconButton(
                     icon:
-                    const Icon(Icons.edit, color: Colors.indigo),
+                    const Icon(Icons.edit, color: Colors.blue),
                     onPressed: () => showEditDialog(key, data),
                   ),
                   IconButton(

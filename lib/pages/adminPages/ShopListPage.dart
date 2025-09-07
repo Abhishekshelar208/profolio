@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'GenerateCouponCodePage.dart';
@@ -40,15 +41,25 @@ class _ShopListPageState extends State<ShopListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: const Color(0xffe0eae5),
         elevation: 0,
-        title: const Text("All Shops", style: TextStyle(color: Colors.amber)),
+        title: Text(
+          "All Shops",
+          style: GoogleFonts.blinker(
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) => GenerateCouponCodePage(),));
-      },child: Icon((Icons.add)),),
+      },child: Icon((Icons.add),color: Colors.white,),),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: shopNames.isEmpty
@@ -56,14 +67,17 @@ class _ShopListPageState extends State<ShopListPage> {
             : ListView(
           children: shopNames.map((shop) {
             return Card(
-              color: Colors.grey[300],
+              color: Colors.white,
               child: ListTile(
-                title: Text(shop,style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),),
-                trailing: const Icon(Icons.arrow_forward_ios, color: Colors.black,),
+                title: Text(
+                  shop,
+                  style: GoogleFonts.blinker(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios, color: Colors.blue,),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -136,10 +150,20 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        title: Text(widget.shopName, style: const TextStyle(color: Colors.white)),
-        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+        title: Text(
+          widget.shopName,
+          style: GoogleFonts.blinker(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: const Color(0xffe0eae5),
         elevation: 0,
       ),
       body: shopCoupons.isEmpty
@@ -150,7 +174,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
           final coupon = shopCoupons[index];
           final location = coupon['location'];
           return Card(
-            color: Colors.white70,
+            color: Colors.white,
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: ListTile(
               title: Text(
@@ -188,7 +212,7 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                           children: [
                             Text(
                               'Location: ${location['latitude']}, ${location['longitude']}',
-                              style: const TextStyle(fontSize: 12, color: Colors.black, fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontSize: 12, color: Colors.blue, fontWeight: FontWeight.bold),
                             ),
                             ElevatedButton(
                               onPressed: () {
@@ -197,11 +221,18 @@ class _ShopDetailsPageState extends State<ShopDetailsPage> {
                                 _openMap(lat, lng);
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black,
+                                backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
                               ),
-                              child: const Text("Open Maps"),
+                              child: Text(
+                                "Open Maps",
+                                style: GoogleFonts.blinker(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ],
                         ),

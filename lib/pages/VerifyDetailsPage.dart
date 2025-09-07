@@ -49,8 +49,8 @@ class _VerifyDetailsPageState extends State<VerifyDetailsPage> {
     if (widget.aboutyourselfController.text.trim().isEmpty) missingFields.add("About Yourself");
     if (widget.useremailController.text.trim().isEmpty) missingFields.add("Email");
     if (widget.graduationYearController.text.trim().isEmpty) missingFields.add("Graduation Year");
-    if (widget.imageFile == null) missingFields.add("Profile Picture");
-    if (widget.resumeFile == null) missingFields.add("Resume File");
+    if (widget.imageFile == null) missingFields.add("Set Profile Picture");
+    if (widget.resumeFile == null) missingFields.add("Upload Resume File");
     if (widget.skillsList.isEmpty) missingFields.add("Skills");
     if (widget.softSkillsList.isEmpty) missingFields.add("Soft Skills");
     if (widget.toolsList.isEmpty) missingFields.add("Languages");
@@ -74,18 +74,18 @@ class _VerifyDetailsPageState extends State<VerifyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff121212),
+      backgroundColor: const Color(0xffe0eae5),
       appBar: AppBar(
-        backgroundColor: const Color(0xff121212),
+        backgroundColor: const Color(0xffe0eae5),
         title: Text(
-          "Portfolio Verification",
+          "Verification Page",
           style: GoogleFonts.blinker(
-            fontSize: 26,
-            color: const Color(0xfffaa629),
+            fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -120,7 +120,7 @@ class _VerifyDetailsPageState extends State<VerifyDetailsPage> {
                 style: GoogleFonts.blinker(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Colors.redAccent,
+                  color: Colors.blue,
                 ),
               ),
               const SizedBox(height: 10),
@@ -136,6 +136,7 @@ class _VerifyDetailsPageState extends State<VerifyDetailsPage> {
                       style: GoogleFonts.blinker(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
+                        color: Colors.redAccent,
                       ),
                     ),
                   );
