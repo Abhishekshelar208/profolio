@@ -192,12 +192,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:profolio/abhishek.dart';
 import 'package:profolio/pages/designSelectionPage.dart';
 import 'package:profolio/pages/splash_screen.dart';
+import 'package:profolio/portfolioDesings/design_six.dart';
 import 'package:profolio/portfolioDesings/designfour.dart';
 import 'package:profolio/portfolioDesings/designone.dart';
 import 'package:profolio/portfolioDesings/designthreee.dart';
 import 'package:profolio/portfolioDesings/designtwo.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+import '../portfolioDesings/design_five.dart';
 import 'CreatePaymentCodePage.dart';
 import 'DemoVideoPage.dart';
 import 'DeveloperProfilePage.dart';
@@ -445,6 +447,12 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
                         break;
                       case "DesignFour":
                         targetPage = DesignFour(userData: data);
+                        break;
+                      case "DesignFive":
+                        targetPage = DesignFive(userData: data);
+                        break;
+                      case "DesignSix":
+                        targetPage = DesignSix(userData: data);
                         break;
                       default:
                         targetPage = DesignOne(userData: data);

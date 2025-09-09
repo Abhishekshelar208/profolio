@@ -1,15 +1,16 @@
 import 'dart:ui';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../pages/AchivementsSliders/achievementsliderfordesigntwo.dart';
-import '../pages/ConnectwithMe/connectwithmefordesigntwo.dart';
-import '../pages/ExperienceSliders/experiencesliderfordesigntwo.dart';
+import '../pages/AchivementsSliders/achievementsliderfordesignthree.dart';
+import '../pages/ConnectwithMe/connectwithmefordesignthree.dart';
+import '../pages/ExperienceSliders/experiencesectionfordesignthree.dart';
 import '../pages/fullscreenimageview.dart';
-import '../pages/marqueechips.dart';
-import '../pages/ProjectSliders/projectsliderfordesigntwo.dart';
+import '../pages/ProjectSliders/projectsliderfordesignthree.dart';
 
 class DesignThree extends StatefulWidget {
   final Map<String, dynamic> userData;
@@ -50,7 +51,6 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
       duration: Duration(milliseconds: 1200),
     );
 
-
     _cardOpacityAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
@@ -69,7 +69,6 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
     _scrollController.dispose();
     super.dispose();
   }
-
 
   // Glassmorphism Container
   Widget _buildGlassMorphismContainer({
@@ -312,6 +311,220 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
       ],
     );
   }
+
+  // ==================== NEW INNOVATIVE SKILLS SECTION ====================
+
+  // Innovative Skills Section - Main Method
+  Widget _buildInnovativeSkillsSection() {
+    final skills = widget.userData["skills"] as List<dynamic>;
+
+    return Column(
+      children: [
+        // Animated Skills Orbit View
+        _buildSkillsOrbitView(skills),
+        SizedBox(height: 40),
+        // Interactive Skills Hexagon Grid
+        // _buildSkillsHexagonGrid(skills),
+      ],
+    );
+  }
+
+  // Orbital/Circular Skills Layout
+  Widget _buildSkillsOrbitView(List<dynamic> skills) {
+    return Container(
+      height: 300,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Center core
+          Container(
+            width: 110,
+            height: 110,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [Color(0xFF6C63FF), Color(0xFF1DD1A1)],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xFF6C63FF).withAlpha(102),
+                  blurRadius: 30,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+            child: Icon(
+              Icons.code,
+              color: Colors.white,
+              size: 50,
+            ),
+          ),
+
+          // Skills orbiting around center
+          ...List.generate(
+            math.min(skills.length, 12), // Limit to 12 skills for orbit
+                (index) {
+              final angle = (index * 2 * math.pi) / math.min(skills.length, 12);
+              final radius = 120.0;
+              final x = radius * math.cos(angle);
+              final y = radius * math.sin(angle);
+
+              return TweenAnimationBuilder<double>(
+                tween: Tween<double>(begin: 0.0, end: 1.0),
+                duration: Duration(milliseconds: 1000 + (index * 100)),
+                curve: Curves.elasticOut,
+                builder: (context, value, child) {
+                  return Transform.translate(
+                    offset: Offset(x * value, y * value),
+                    child: Transform.scale(
+                      scale: value,
+                      child: _buildFloatingSkillChip(skills[index].toString(), index),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Floating Skill Chip with Animation
+  Widget _buildFloatingSkillChip(String skill, int index) {
+    final colors = [
+      [Color(0xFF6C63FF), Color(0xFF8A7FFF)],
+      [Color(0xFF1DD1A1), Color(0xFF55EFC4)],
+      [Color(0xFFFF6B6B), Color(0xFFFF8E8E)],
+      [Color(0xFFFECA57), Color(0xFFFFD93D)],
+      [Color(0xFF6C5CE7), Color(0xFF9B59B6)],
+      [Color(0xFFE17055), Color(0xFFD63031)],
+    ];
+
+    final colorPair = colors[index % colors.length];
+
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(begin: 0.0, end: 1.0),
+      duration: Duration(seconds: 3),
+      builder: (context, value, child) {
+        return Transform.translate(
+          offset: Offset(0, math.sin(value * 2 * math.pi + index) * 5),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 08),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: colorPair,
+              ),
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+                color: Colors.white.withAlpha(128),
+                width: 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: colorPair[0].withAlpha(77),
+                  blurRadius: 15,
+                  offset: Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Text(
+              skill,
+              style: GoogleFonts.poppins(
+                fontSize: 12,
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // Hexagonal Grid Layout for Skills
+  // Widget _buildSkillsHexagonGrid(List<dynamic> skills) {
+  //   return _buildGlassMorphismContainer(
+  //     child: Column(
+  //       children: [
+  //         Text(
+  //           "Technical Arsenal",
+  //           style: GoogleFonts.poppins(
+  //             fontSize: 18,
+  //             color: Colors.white.withAlpha(230),
+  //             fontWeight: FontWeight.w600,
+  //           ),
+  //         ),
+  //         SizedBox(height: 20),
+  //         Wrap(
+  //           alignment: WrapAlignment.center,
+  //           spacing: 15,
+  //           runSpacing: 15,
+  //           children: skills.asMap().entries.map<Widget>((entry) {
+  //             final index = entry.key;
+  //             final skill = entry.value.toString();
+  //             return _buildHexagonSkill(skill, index);
+  //           }).toList(),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  // // Individual Hexagonal Skill Widget
+  // Widget _buildHexagonSkill(String skill, int index) {
+  //   final colors = [
+  //     Color(0xFF6C63FF),
+  //     Color(0xFF1DD1A1),
+  //     Color(0xFFFF6B6B),
+  //     Color(0xFFFECA57),
+  //     Color(0xFF6C5CE7),
+  //     Color(0xFFE17055),
+  //   ];
+  //
+  //   final color = colors[index % colors.length];
+  //
+  //   return TweenAnimationBuilder<double>(
+  //     tween: Tween<double>(begin: 0.0, end: 1.0),
+  //     duration: Duration(milliseconds: 800 + (index * 50)),
+  //     curve: Curves.bounceOut,
+  //     builder: (context, value, child) {
+  //       return Transform.scale(
+  //         scale: value,
+  //         child: GestureDetector(
+  //           onTap: () {
+  //             // Add haptic feedback
+  //             HapticFeedback.lightImpact();
+  //           },
+  //           child: AnimatedContainer(
+  //             duration: Duration(milliseconds: 300),
+  //             width: 100,
+  //             height: 100,
+  //             child: CustomPaint(
+  //               painter: HexagonPainter(color: color),
+  //               child: Center(
+  //                 child: Padding(
+  //                   padding: EdgeInsets.all(8),
+  //                   child: Text(
+  //                     skill,
+  //                     textAlign: TextAlign.center,
+  //                     style: GoogleFonts.poppins(
+  //                       fontSize: 10,
+  //                       color: Colors.white,
+  //                       fontWeight: FontWeight.w600,
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
+  // ==================== END OF SKILLS SECTION ====================
 
   @override
   Widget build(BuildContext context) {
@@ -564,64 +777,32 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
 
                   SizedBox(height: 80),
 
-                  // Skills Section
+                  // Skills Section - NEW INNOVATIVE DESIGN
                   _buildSectionHeader("Skills", "What I Work With"),
-                  _buildGlassMorphismContainer(
-                    child: SizedBox(
-                      height: 60,
-                      child: MarqueeChips(
-                        velocity: 30.0,
-                        chips: (widget.userData["skills"] as List<dynamic>).map<Widget>((skill) {
-                          return Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color(0xFF6C63FF).withAlpha(77),
-                                  Color(0xFF1DD1A1).withAlpha(77),
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: Colors.white.withAlpha(77),
-                              ),
-                            ),
-                            child: Text(
-                              skill.toString(),
-                              style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
+                  _buildInnovativeSkillsSection(),
 
                   SizedBox(height: 80),
 
                   // Projects Section
                   _buildSectionHeader("Portfolio", "Featured Projects"),
-                  ProjectSliderForDesignTwo(projects: widget.userData["projects"]),
+                  ProjectSliderForDesignThree(projects: widget.userData["projects"]),
 
                   SizedBox(height: 80),
 
                   // Achievements Section
                   _buildSectionHeader("Recognition", "My Achievements"),
-                  AchievementSliderForDesignTwo(achievements: widget.userData["achievements"]),
+                  AchievementSliderForDesignThree(achievements: widget.userData["achievements"]),
 
                   SizedBox(height: 80),
 
                   // Experience Section
                   _buildSectionHeader("Journey", "My Experience"),
-                  ExperienceSectionForDesignTwo(experiences: widget.userData["experiences"] as List<dynamic>),
+                  ExperienceSectionForDesignThree(experiences: widget.userData["experiences"] as List<dynamic>),
 
                   SizedBox(height: 80),
 
                   // Connect Section
-                  ConnectWithMedesignTwo(userData: widget.userData),
+                  ConnectWithMedesignThree(userData: widget.userData),
 
                   SizedBox(height: 60),
                 ],
@@ -632,4 +813,50 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
       ),
     );
   }
+}
+
+// Custom Painter for Hexagon Shape
+class HexagonPainter extends CustomPainter {
+  final Color color;
+
+  HexagonPainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..shader = LinearGradient(
+        colors: [color, color.withAlpha(180)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
+      ..style = PaintingStyle.fill;
+
+    final borderPaint = Paint()
+      ..color = Colors.white.withAlpha(128)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
+    final path = Path();
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2 - 5;
+
+    for (int i = 0; i < 6; i++) {
+      final angle = (i * math.pi) / 3;
+      final x = center.dx + radius * math.cos(angle);
+      final y = center.dy + radius * math.sin(angle);
+
+      if (i == 0) {
+        path.moveTo(x, y);
+      } else {
+        path.lineTo(x, y);
+      }
+    }
+    path.close();
+
+    canvas.drawPath(path, paint);
+    canvas.drawPath(path, borderPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

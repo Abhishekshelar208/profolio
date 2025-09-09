@@ -116,6 +116,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:profolio/portfolioDesings/design_five.dart';
+import 'package:profolio/portfolioDesings/design_six.dart';
 import 'package:profolio/portfolioDesings/designone.dart';
 import 'package:profolio/portfolioDesings/designtwo.dart';
 import 'package:profolio/portfolioDesings/designfour.dart';
@@ -158,6 +160,10 @@ class PortfolioDetailLoader extends StatelessWidget {
           targetPage = DesignThree(userData: data);
         } else if (selectedDesign == "DesignFour") {
           targetPage = DesignFour(userData: data);
+        } else if (selectedDesign == "DesignFive") {
+          targetPage = DesignFive(userData: data);
+        } else if (selectedDesign == "DesignSix") {
+          targetPage = DesignSix(userData: data);
         } else {
           targetPage = DesignOne(userData: data);
         }
