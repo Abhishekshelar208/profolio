@@ -116,8 +116,8 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
         return Transform.scale(
           scale: animationValue,
           child: _buildGlassMorphismContainer(
-            width: MediaQuery.of(context).size.width < 600 ? 140 : 180,
-            height: MediaQuery.of(context).size.width < 600 ? 120 : 140,
+            width: MediaQuery.of(context).size.width < 600 ? 150 : 180,
+            height: MediaQuery.of(context).size.width < 600 ? 150 : 140,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -148,7 +148,7 @@ class _DesignThreeState extends State<DesignThree> with TickerProviderStateMixin
                   title,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
-                    fontSize: MediaQuery.of(context).size.width < 600 ? 12 : 14,
+                    fontSize: MediaQuery.of(context).size.width < 600 ? 14 : 14,
                     color: Colors.white.withAlpha(204),
                     fontWeight: FontWeight.w300,
                   ),
