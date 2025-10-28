@@ -20,6 +20,11 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
+  <!-- Cache Prevention Meta Tags -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -31,8 +36,341 @@
 
   <title>profolio</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* Loading Screen Styles */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      transition: opacity 0.5s ease-out;
+    }
+
+    #loading-animation {
+      width: 300px;
+      height: 300px;
+      position: relative;
+    }
+
+    /* CSS Spinner Fallback */
+    #loading-spinner {
+      display: none;
+      width: 60px;
+      height: 60px;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    #loading-text {
+      margin-top: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-size: 16px;
+      color: #333;
+      text-align: center;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .fade-out {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
+
+    /* Ensure loading screen is on top */
+    #loading-screen.active {
+      display: flex;
+    }
+
+    /* Hide Flutter app until loading is complete */
+    flt-glass-pane {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+
+    flt-glass-pane.ready {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="active">
+    <div id="loading-animation">
+      <!-- CSS spinner as fallback -->
+      <div id="loading-spinner"></div>
+    </div>
+    <div id="loading-text">Loading...</div>
+  </div>
+
+  <script>
+    // App Version Configuration
+    const APP_VERSION = '1.0.0';
+    const AUTO_UPDATE_ENABLED = true; // Set to false during development
+    const VERSION_CHECK_COOLDOWN = 10000; // 10 seconds
+
+    console.log(`[Version Check] Current App Version: ${APP_VERSION}`);
+
+    // Function to clear all caches
+    async function clearAllCaches() {
+      console.log('[Cache Clear] Clearing all caches...');
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames.map(cacheName => {
+            console.log(`[Cache Clear] Deleting cache: ${cacheName}`);
+            return caches.delete(cacheName);
+          })
+        );
+      }
+    }
+
+    // Function to unregister all service workers
+    async function unregisterServiceWorkers() {
+      console.log('[Service Worker] Unregistering all service workers...');
+      if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(
+          registrations.map(registration => {
+            console.log('[Service Worker] Unregistering:', registration);
+            return registration.unregister();
+          })
+        );
+      }
+    }
+
+    // Function to check version and perform auto-update
+    async function checkVersionAndUpdate() {
+      if (!AUTO_UPDATE_ENABLED) {
+        console.log('[Version Check] Auto-update is disabled');
+        return;
+      }
+
+      const storedVersion = localStorage.getItem('app_version');
+      const lastCheckTime = parseInt(localStorage.getItem('last_version_check') || '0');
+      const currentTime = Date.now();
+
+      // Loop prevention: Only check if enough time has passed
+      if (currentTime - lastCheckTime < VERSION_CHECK_COOLDOWN) {
+        console.log('[Version Check] Skipping check - cooldown active');
+        return;
+      }
+
+      console.log(`[Version Check] Stored Version: ${storedVersion}`);
+
+      // IMPORTANT: Only reload if there's an ACTUAL version mismatch
+      // On first visit (storedVersion is null), just store the version WITHOUT reloading
+      if (storedVersion && storedVersion !== APP_VERSION) {
+        console.log(`[Version Check] Version mismatch detected! Stored: ${storedVersion}, Current: ${APP_VERSION}`);
+        console.log('[Update] Starting update process...');
+
+        try {
+          // Save current URL to restore after reload
+          const currentUrl = window.location.href;
+          console.log('[Update] Preserving current URL:', currentUrl);
+          localStorage.setItem('pending_url_after_update', currentUrl);
+
+          // Clear all caches
+          await clearAllCaches();
+
+          // Unregister all service workers
+          await unregisterServiceWorkers();
+
+          // Update stored version
+          localStorage.setItem('app_version', APP_VERSION);
+          localStorage.setItem('last_version_check', currentTime.toString());
+
+          console.log('[Update] Update complete - forcing reload...');
+
+          // Force hard reload (URL will be restored after reload)
+          window.location.reload(true);
+        } catch (error) {
+          console.error('[Update] Error during update process:', error);
+        }
+      } else {
+        // First visit or version is up to date
+        if (!storedVersion) {
+          console.log('[Version Check] First visit - storing version without reload');
+          localStorage.setItem('app_version', APP_VERSION);
+        } else {
+          console.log('[Version Check] Version is up to date');
+        }
+        localStorage.setItem('last_version_check', currentTime.toString());
+
+        // Check if there's a pending URL to restore after update
+        const pendingUrl = localStorage.getItem('pending_url_after_update');
+        if (pendingUrl) {
+          console.log('[Update] Restoring URL after update:', pendingUrl);
+          localStorage.removeItem('pending_url_after_update');
+          // Only redirect if current URL is different
+          if (window.location.href !== pendingUrl) {
+            window.location.href = pendingUrl;
+          }
+        }
+      }
+    }
+
+    // Load Lottie animation
+    async function loadLottieAnimation() {
+      const spinner = document.getElementById('loading-spinner');
+      const loadingContainer = document.getElementById('loading-animation');
+      
+      // Show spinner initially as fallback
+      if (spinner) spinner.style.display = 'block';
+      
+      try {
+        // Load Lottie library from CDN
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+        
+        script.onload = async () => {
+          console.log('[Lottie] Library loaded');
+          
+          // Load animation data
+          try {
+            const response = await fetch('assets/lib/assets/lottieAnimations/rocketAnimation.json');
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const animationData = await response.json();
+            
+            // Hide spinner once Lottie is ready
+            if (spinner) spinner.style.display = 'none';
+            
+            // Create Lottie animation
+            const animation = lottie.loadAnimation({
+              container: loadingContainer,
+              renderer: 'svg',
+              loop: true,
+              autoplay: true,
+              animationData: animationData
+            });
+            
+            console.log('[Lottie] Rocket animation loaded and playing');
+            
+            // Update loading text
+            document.getElementById('loading-text').textContent = 'Loading your portfolio...';
+          } catch (error) {
+            console.warn('[Lottie] Could not load rocket animation:', error);
+            // Keep spinner visible as fallback
+            if (spinner) spinner.style.display = 'block';
+            document.getElementById('loading-text').textContent = 'Loading your portfolio...';
+          }
+        };
+        
+        script.onerror = () => {
+          console.warn('[Lottie] Could not load Lottie library from CDN');
+          // Keep spinner visible as fallback
+          if (spinner) spinner.style.display = 'block';
+          document.getElementById('loading-text').textContent = 'Loading your portfolio...';
+        };
+        
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error('[Lottie] Error loading animation:', error);
+        // Keep spinner visible as fallback
+        if (spinner) spinner.style.display = 'block';
+        document.getElementById('loading-text').textContent = 'Loading your portfolio...';
+      }
+    }
+
+    // Function to hide loading screen
+    function hideLoadingScreen() {
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen && loadingScreen.style.display !== 'none') {
+        console.log('[Loading] Hiding loading screen');
+        
+        // Add fade-out class for smooth transition
+        loadingScreen.classList.add('fade-out');
+        
+        // Make Flutter app visible
+        const flutterView = document.querySelector('flt-glass-pane');
+        if (flutterView) {
+          flutterView.classList.add('ready');
+        }
+        
+        // Remove loading screen after fade animation
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+          loadingScreen.classList.remove('active');
+          console.log('[Loading] Loading screen hidden');
+        }, 500);
+      }
+    }
+
+    // Initialize
+    (async function() {
+      console.log('[Init] Starting initialization...');
+      
+      // Load Lottie animation immediately
+      loadLottieAnimation();
+      
+      // Perform version check (don't await to avoid blocking)
+      checkVersionAndUpdate();
+      
+      // Set up Flutter ready listener
+      let flutterReady = false;
+      
+      // Listen for Flutter's first frame event
+      window.addEventListener('flutter-first-frame', () => {
+        console.log('[Flutter] First frame rendered');
+        flutterReady = true;
+        hideLoadingScreen();
+      });
+
+      // Also listen for DOMContentLoaded as additional signal
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('[Loading] DOM content loaded');
+        });
+      }
+
+      // Extended timeout fallback (8 seconds for slower connections)
+      setTimeout(() => {
+        if (!flutterReady) {
+          console.log('[Loading] Timeout reached - hiding loading screen');
+          hideLoadingScreen();
+        }
+      }, 8000);
+
+      // Additional check: Hide if Flutter app container is rendered
+      const checkFlutterApp = setInterval(() => {
+        const flutterView = document.querySelector('flutter-view, flt-glass-pane, [flt-renderer]');
+        if (flutterView && !flutterReady) {
+          console.log('[Loading] Flutter view detected in DOM');
+          flutterReady = true;
+          hideLoadingScreen();
+          clearInterval(checkFlutterApp);
+        }
+      }, 500);
+
+      // Clear interval after timeout
+      setTimeout(() => clearInterval(checkFlutterApp), 8000);
+    })();
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

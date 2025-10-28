@@ -121,6 +121,7 @@ import 'package:profolio/portfolioDesings/design_six.dart';
 import 'package:profolio/portfolioDesings/designone.dart';
 import 'package:profolio/portfolioDesings/designtwo.dart';
 import 'package:profolio/portfolioDesings/designfour.dart';
+import 'package:profolio/widgets/lottie_loading_widget.dart';
 
 import '../portfolioDesings/designthreee.dart';
 
@@ -137,8 +138,9 @@ class PortfolioDetailLoader extends StatelessWidget {
       future: portfolioRef.once(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return const LottieLoadingScaffold(
+            loadingText: 'Loading Portfolio...',
+            size: 300,
           );
         }
         if (snapshot.hasError || snapshot.data?.snapshot.value == null) {

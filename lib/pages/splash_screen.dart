@@ -102,7 +102,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _splashServices.checkLoginStatus(context);
+    // Only check login status if we're actually on the splash screen route
+    // Don't navigate if we're just passing through to a portfolio route
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentRoute = ModalRoute.of(context)?.settings.name;
+      print('[SplashScreen] Current route: $currentRoute');
+      
+      // Only navigate if we're on the root route, not a portfolio route
+      if (currentRoute == '/') {
+        _splashServices.checkLoginStatus(context);
+      }
+    });
   }
 
   @override

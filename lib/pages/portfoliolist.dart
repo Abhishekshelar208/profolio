@@ -200,6 +200,7 @@ import 'package:profolio/portfolioDesings/designtwo.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import '../portfolioDesings/design_five.dart';
+import '../widgets/lottie_loading_widget.dart';
 import 'CreatePaymentCodePage.dart';
 import 'DemoVideoPage.dart';
 import 'DeveloperProfilePage.dart';
@@ -392,11 +393,10 @@ class _PortfolioListPageState extends State<PortfolioListPage> {
           builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
 
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.blue,
-                  strokeWidth: 3,
-                ),
+              return const LottieLoadingWidget(
+                loadingText: 'Loading Portfolios...',
+                size: 250,
+                backgroundColor: Color(0xffe0eae5),
               );
             }
 
