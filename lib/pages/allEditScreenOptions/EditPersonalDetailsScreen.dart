@@ -1,11 +1,12 @@
-import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io' as io;
 
 class EditPersonalDetailsScreen extends StatefulWidget {
   final String portfolioId;
@@ -26,7 +27,8 @@ class _EditPersonalDetailsScreenState extends State<EditPersonalDetailsScreen> {
   final TextEditingController internshipsCompletedController = TextEditingController();
   final TextEditingController noOfProjectsCompletedController = TextEditingController();
 
-  File? _imageFile;
+  dynamic _imageFile; // dynamic to hold XFile or File
+  Uint8List? _webImageBytes; // For reliable web preview
   String? currentProfileUrl;
   bool isLoading = true;
 
@@ -67,15 +69,29 @@ class _EditPersonalDetailsScreenState extends State<EditPersonalDetailsScreen> {
     final picked = await picker.pickImage(source: ImageSource.gallery, imageQuality: 70);
 
     if (picked != null) {
-      setState(() {
-        _imageFile = File(picked.path);
-      });
+      if (kIsWeb) {
+        final bytes = await picked.readAsBytes();
+        setState(() {
+          _imageFile = picked;
+          _webImageBytes = bytes;
+        });
+      } else {
+        setState(() {
+          _imageFile = picked;
+        });
+      }
     }
   }
 
-  Future<String> _uploadImageToFirebase(File imageFile, String path) async {
+  Future<String> _uploadImageToFirebase(dynamic imageSource, String path) async {
     Reference storageRef = FirebaseStorage.instance.ref().child(path);
-    UploadTask uploadTask = storageRef.putFile(imageFile);
+    UploadTask uploadTask;
+    if (kIsWeb) {
+      final XFile xFile = imageSource as XFile;
+      uploadTask = storageRef.putData(await xFile.readAsBytes());
+    } else {
+      uploadTask = storageRef.putFile(imageSource as io.File);
+    }
     TaskSnapshot snapshot = await uploadTask;
     return await snapshot.ref.getDownloadURL();
   }
@@ -147,10 +163,20 @@ class _EditPersonalDetailsScreenState extends State<EditPersonalDetailsScreen> {
                   radius: 55,
                   backgroundColor: Color(0xff1E1E1E),
                   backgroundImage: _imageFile != null
-                      ? FileImage(_imageFile!)
+                      ? (kIsWeb
+                          ? (_webImageBytes != null
+                              ? MemoryImage(_webImageBytes!)
+                              : (_imageFile is XFile
+                                  ? NetworkImage(_imageFile.path)
+                                  : null))
+                          : (!kIsWeb && _imageFile is XFile)
+                              ? FileImage(io.File(_imageFile.path))
+                              : (!kIsWeb && _imageFile is io.File)
+                                  ? FileImage(_imageFile as io.File)
+                                  : null)
                       : (currentProfileUrl != null && currentProfileUrl!.isNotEmpty)
-                      ? NetworkImage(currentProfileUrl!)
-                      : AssetImage("assets/default-avatar.png") as ImageProvider,
+                          ? NetworkImage(currentProfileUrl!)
+                          : const AssetImage("assets/default-avatar.png") as ImageProvider,
                 ),
                 Positioned(
                   bottom: 0,

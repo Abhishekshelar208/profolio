@@ -1,108 +1,9 @@
-// import 'dart:io';
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-//
-// class AddNewProjectPage extends StatefulWidget {
-//   const AddNewProjectPage({super.key});
-//
-//   @override
-//   State<AddNewProjectPage> createState() => _AddNewProjectPageState();
-// }
-//
-// class _AddNewProjectPageState extends State<AddNewProjectPage> {
-//   final _formKey = GlobalKey<FormState>();
-//
-//   String title = '';
-//   String description = '';
-//   String techStack = '';
-//   String githubLink = '';
-//   String youtubeLink = '';
-//   File? imageFile;
-//
-//   Future<void> _pickImage() async {
-//     final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
-//     if (picked != null) {
-//       setState(() {
-//         imageFile = File(picked.path);
-//       });
-//     }
-//   }
-//
-//   void _submitProject() {
-//     if (_formKey.currentState!.validate()) {
-//       Map<String, dynamic> newProject = {
-//         "title": title,
-//         "description": description,
-//         "techstack": techStack,
-//         "projectgithublink": githubLink,
-//         "projectyoutubelink": youtubeLink,
-//         "image": imageFile,
-//       };
-//
-//       Navigator.pop(context, newProject);
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("Add New Project")),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Form(
-//           key: _formKey,
-//           child: ListView(
-//             children: [
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: "Title"),
-//                 onChanged: (val) => title = val,
-//                 validator: (val) => val!.isEmpty ? "Required" : null,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: "Description"),
-//                 onChanged: (val) => description = val,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: "Tech Stack"),
-//                 onChanged: (val) => techStack = val,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: "GitHub Link"),
-//                 onChanged: (val) => githubLink = val,
-//               ),
-//               TextFormField(
-//                 decoration: InputDecoration(labelText: "YouTube Link"),
-//                 onChanged: (val) => youtubeLink = val,
-//               ),
-//               const SizedBox(height: 16),
-//               GestureDetector(
-//                 onTap: _pickImage,
-//                 child: Column(
-//                   children: [
-//                     Icon(Icons.image, size: 40, color: Colors.blue),
-//                     Text("Select Image"),
-//                     if (imageFile != null) Image.file(imageFile!, height: 100),
-//                   ],
-//                 ),
-//               ),
-//               const SizedBox(height: 16),
-//               ElevatedButton(
-//                 onPressed: _submitProject,
-//                 child: Text("Add Project"),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io' as io;
 
 class AddNewProjectPage extends StatefulWidget {
   const AddNewProjectPage({super.key});
@@ -119,14 +20,23 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
   String techStack = '';
   String githubLink = '';
   String youtubeLink = '';
-  File? imageFile;
+  dynamic imageFile; // Store as dynamic to accommodate XFile on Web and File on Mobile
+  Uint8List? webImageBytes; // For reliable web preview
 
   Future<void> _pickImage() async {
     final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (picked != null) {
-      setState(() {
-        imageFile = File(picked.path);
-      });
+      if (kIsWeb) {
+        final bytes = await picked.readAsBytes();
+        setState(() {
+          imageFile = picked;
+          webImageBytes = bytes;
+        });
+      } else {
+        setState(() {
+          imageFile = picked;
+        });
+      }
     }
   }
 
@@ -139,6 +49,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
         "projectgithublink": githubLink,
         "projectyoutubelink": youtubeLink,
         "image": imageFile,
+        "webImageBytes": webImageBytes,
       };
 
       Navigator.pop(context, newProject);
@@ -195,6 +106,7 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
                 onChanged: (val) => title = val,
                 validator: (val) => val!.isEmpty ? "Enter Title" : null,
               ),
+              const SizedBox(height: 12),
               const SizedBox(height: 12),
               TextFormField(
                 maxLines: 4,
@@ -267,12 +179,15 @@ class _AddNewProjectPageState extends State<AddNewProjectPage> {
                   if (imageFile != null)
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.file(
-                        imageFile!,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
+                      child: kIsWeb
+                          ? (webImageBytes != null
+                              ? Image.memory(webImageBytes!, width: 50, height: 50, fit: BoxFit.cover)
+                              : const SizedBox(width: 50, height: 50))
+                          : (!kIsWeb && imageFile is XFile)
+                              ? Image.file(io.File(imageFile.path), width: 50, height: 50, fit: BoxFit.cover)
+                              : (!kIsWeb && imageFile is io.File)
+                                  ? Image.file(imageFile as io.File, width: 50, height: 50, fit: BoxFit.cover)
+                                  : const SizedBox(),
                     ),
                 ],
               ),

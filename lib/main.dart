@@ -145,7 +145,7 @@
 
 
 // this is code is working perfectly and correct (final code for flutter web app)
-//
+
 import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
@@ -163,7 +163,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,        //comment this line when you run on mobile app
   );
   runApp(const MyApp());
 }
@@ -213,26 +213,33 @@ class _MyAppState extends State<MyApp> {
     } catch (e) {
       debugPrint('Error checking initial link: $e');
     }
-    
+
     // For web, check window location
     if (kIsWeb) {
       final currentUrl = Uri.base.toString();
-      debugPrint('Web URL: $currentUrl');
-      
-      // Check if URL contains #/portfolio/
-      if (currentUrl.contains('#/portfolio/')) {
-        final fragment = currentUrl.split('#')[1];
+      debugPrint('[DeepLink] Web URL: $currentUrl');
+
+      // Check if URL contains #/portfolio/ or /portfolio/
+      if (currentUrl.contains('/portfolio/')) {
+        String fragment;
+        if (currentUrl.contains('#')) {
+          fragment = currentUrl.split('#')[1];
+        } else {
+          final uri = Uri.parse(currentUrl);
+          fragment = uri.path;
+        }
+
         if (fragment.startsWith('/portfolio/')) {
           setState(() {
             _initialRoute = fragment;
             _initialRouteChecked = true;
           });
-          debugPrint('Setting initial route from web URL to: $fragment');
+          debugPrint('[DeepLink] Setting initial route to: $fragment');
           return;
         }
       }
     }
-    
+
     setState(() {
       _initialRouteChecked = true;
     });
@@ -279,13 +286,13 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: (RouteSettings settings) {
         final String? routeName = settings.name;
         debugPrint('[Route] onGenerateRoute called with: $routeName');
-        
+
         Widget routeWidget;
-        
+
         if (routeName != null && routeName.startsWith('/portfolio/')) {
           // Portfolio route - extract ID and load portfolio
           final String portfolioId = routeName.substring('/portfolio/'.length);
-          
+
           // Only process if we have an actual portfolio ID (not just "/portfolio" or "/portfolio/")
           if (portfolioId.isNotEmpty) {
             debugPrint('[Route] Loading portfolio: $portfolioId');
@@ -323,8 +330,9 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-//
-//
+
+
+
 //
 //
 //

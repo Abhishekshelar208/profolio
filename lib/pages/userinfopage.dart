@@ -1,16 +1,16 @@
-import 'dart:io';
-
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+import 'dart:io' as io;
 import 'package:profolio/pages/designSelectionPage.dart';
 import 'package:profolio/pages/portfoliolist.dart';
 import 'package:profolio/pages/utils.dart';
@@ -45,10 +45,13 @@ class UserInfoPage extends StatefulWidget {
 
 class _UserInfoPageState extends State<UserInfoPage> {
   final _formKey = GlobalKey<FormState>();
-  File? _imageFile;
-  File? _achievementImageFile;
-  File? _projectImageFile;
-  File? _resumeFile;
+  dynamic _imageFile;
+  Uint8List? _profileBytes;
+  dynamic _achievementImageFile;
+  Uint8List? _achievementBytes;
+  dynamic _projectImageFile;
+  Uint8List? _projectBytes;
+  dynamic _resumeFile;
 
 
 
@@ -113,9 +116,17 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Future<void> _pickAchievementImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        _achievementImageFile = File(pickedFile.path);
-      });
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _achievementImageFile = pickedFile;
+          _achievementBytes = bytes;
+        });
+      } else {
+        setState(() {
+          _achievementImageFile = pickedFile;
+        });
+      }
     }
   }
 
@@ -123,9 +134,17 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Future<void> _pickProjectImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        _projectImageFile = File(pickedFile.path);
-      });
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _projectImageFile = pickedFile;
+          _projectBytes = bytes;
+        });
+      } else {
+        setState(() {
+          _projectImageFile = pickedFile;
+        });
+      }
     }
   }
 
@@ -231,9 +250,17 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-      });
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _imageFile = pickedFile;
+          _profileBytes = bytes;
+        });
+      } else {
+        setState(() {
+          _imageFile = pickedFile;
+        });
+      }
     }
   }
 
@@ -261,13 +288,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
       allowedExtensions: ['pdf'],
     );
 
-    if (result != null && result.files.single.path != null) {
-      final file = File(result.files.single.path!);
-      final int sizeInBytes = await file.length();
+    if (result != null) {
+      final selectedFile = result.files.single;
+      final int sizeInBytes = selectedFile.size;
 
       if (sizeInBytes <= 1024 * 1024) { // Check if file is ≤ 1MB
         setState(() {
-          _resumeFile = file;
+          _resumeFile = selectedFile;
         });
       } else {
         // File too large: show a warning
@@ -518,10 +545,29 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
 
 
-// Function to upload image to Firebase Storage and return download URL
-  Future<String> _uploadImageToFirebase(File imageFile, String path) async {
+// Function to upload image/file to Firebase Storage and return download URL
+  Future<String> _uploadImageToFirebase(dynamic fileSource, String path) async {
     Reference storageRef = FirebaseStorage.instance.ref().child(path);
-    UploadTask uploadTask = storageRef.putFile(imageFile);
+    UploadTask uploadTask;
+    if (kIsWeb) {
+      if (fileSource is XFile) {
+        uploadTask = storageRef.putData(await fileSource.readAsBytes());
+      } else if (fileSource is PlatformFile) {
+        uploadTask = storageRef.putData(fileSource.bytes!);
+      } else {
+        throw Exception("Unknown file type on web");
+      }
+    } else {
+      if (fileSource is XFile) {
+        uploadTask = storageRef.putFile(io.File(fileSource.path));
+      } else if (fileSource is PlatformFile) {
+        uploadTask = storageRef.putFile(io.File(fileSource.path!));
+      } else if (fileSource is io.File) {
+        uploadTask = storageRef.putFile(fileSource);
+      } else {
+        throw Exception("Unknown file type on mobile");
+      }
+    }
     TaskSnapshot snapshot = await uploadTask;
     return await snapshot.ref.getDownloadURL();
   }
@@ -555,9 +601,19 @@ class _UserInfoPageState extends State<UserInfoPage> {
                 child: CircleAvatar(
                   radius: 50,
                   backgroundColor: Colors.blue,
-                  backgroundImage: _imageFile != null ? FileImage(_imageFile!) : null,
+                  backgroundImage: _imageFile != null
+                      ? (kIsWeb
+                          ? (_profileBytes != null
+                              ? MemoryImage(_profileBytes!)
+                              : null)
+                          : (!kIsWeb && _imageFile is XFile)
+                              ? FileImage(io.File(_imageFile.path))
+                              : (!kIsWeb && _imageFile is io.File)
+                                  ? FileImage(_imageFile as io.File)
+                                  : null)
+                      : null,
                   child: _imageFile == null
-                      ? Image.asset("lib/assets/icons/user.png",color: Colors.white,)
+                      ? Image.asset("lib/assets/icons/user.png", color: Colors.white)
                       : null,
                 ),
               ),

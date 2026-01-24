@@ -1,9 +1,11 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:io' as io;
 
 class UploadImagePage extends StatefulWidget {
   const UploadImagePage({super.key});
@@ -13,7 +15,8 @@ class UploadImagePage extends StatefulWidget {
 }
 
 class _UploadImagePageState extends State<UploadImagePage> {
-  File? _imageFile;
+  dynamic _imageFile; // dynamic to hold XFile or File
+  Uint8List? _webImageBytes; // For reliable web preview
   bool _isLoading = false;
   String? _existingKey; // For tracking existing image
 
@@ -39,9 +42,17 @@ class _UploadImagePageState extends State<UploadImagePage> {
   Future<void> _pickImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-      });
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _imageFile = pickedFile;
+          _webImageBytes = bytes;
+        });
+      } else {
+        setState(() {
+          _imageFile = pickedFile;
+        });
+      }
     }
   }
 
@@ -61,7 +72,15 @@ class _UploadImagePageState extends State<UploadImagePage> {
       String fileName = "main_uploaded_image"; // Fixed filename to overwrite
       final ref = storageRef.child("images/$fileName.jpg");
 
-      await ref.putFile(_imageFile!);
+      UploadTask putTask;
+      if (kIsWeb) {
+        final XFile xFile = _imageFile as XFile;
+        putTask = ref.putData(await xFile.readAsBytes());
+      } else {
+        putTask = ref.putFile(io.File((_imageFile as XFile).path));
+      }
+
+      await putTask;
       String downloadUrl = await ref.getDownloadURL();
 
       if (_existingKey != null) {
@@ -169,14 +188,17 @@ class _UploadImagePageState extends State<UploadImagePage> {
             const SizedBox(height: 20),
             _imageFile != null
                 ? ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.file(
-                _imageFile!,
-                height: 200,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            )
+                  borderRadius: BorderRadius.circular(12),
+                  child: kIsWeb
+                      ? (_webImageBytes != null
+                          ? Image.memory(_webImageBytes!, height: 200, width: double.infinity, fit: BoxFit.cover)
+                          : const SizedBox(height: 200, width: double.infinity))
+                      : (!kIsWeb && _imageFile is XFile)
+                          ? Image.file(io.File(_imageFile.path), height: 200, width: double.infinity, fit: BoxFit.cover)
+                          : (!kIsWeb && _imageFile is io.File)
+                              ? Image.file(_imageFile as io.File, height: 200, width: double.infinity, fit: BoxFit.cover)
+                              : const SizedBox(),
+                )
                 : const SizedBox(),
             const SizedBox(height: 20),
             ElevatedButton.icon(

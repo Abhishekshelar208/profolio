@@ -242,34 +242,17 @@ class _AchievementSliderForDesignTwoState
       return Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                onPressed: currentStartIndex > 0 ? _showPrevious : null,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: visibleAchievements
+                .map((achievement) => SizedBox(
+              width: (constraints.maxWidth - 48) / 3, // Adjusted width without arrows
+              child: Padding(
+                padding:
+                const EdgeInsets.symmetric(horizontal: 8.0),
+                child: _buildAchievementCard(achievement, true),
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: visibleAchievements
-                      .map((achievement) => SizedBox(
-                    width: (constraints.maxWidth - 80) / 3,
-                    child: Padding(
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: _buildAchievementCard(achievement, true),
-                    ),
-                  ))
-                      .toList(),
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.arrow_forward_ios, color: Colors.white),
-                onPressed: currentStartIndex + 3 < widget.achievements.length
-                    ? _showNext
-                    : null,
-              ),
-            ],
+            ))
+                .toList(),
           ),
         ],
       );

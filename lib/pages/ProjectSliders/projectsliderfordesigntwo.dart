@@ -775,25 +775,17 @@ class _ProjectSliderForDesignTwoState extends State<ProjectSliderForDesignTwo> {
         return Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                  onPressed: currentStartIndex > 0 ? _showPrevious : null,
-                ),
                 ...visibleProjects.map<Widget>((project) {
                   return SizedBox(
-                    width: (constraints.maxWidth - 80) / 3,
+                    width: (constraints.maxWidth - 48) / 3, // Adjusted width without arrows
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: _buildProjectCard(project, true),
                     ),
                   );
                 }).toList(),
-                IconButton(
-                  icon: const Icon(Icons.arrow_forward_ios, color: Colors.white),
-                  onPressed: currentStartIndex + 3 < widget.projects.length ? _showNext : null,
-                ),
               ],
             ),
           ],
@@ -952,17 +944,17 @@ class _ProjectSliderForDesignTwoState extends State<ProjectSliderForDesignTwo> {
                 ),
                 ElevatedButton.icon(
                   onPressed: () => _launchURL(project["projectyoutubelink"] ?? ""),
-                  icon: const Icon(Icons.video_library, color: Colors.white),
+                  icon: const Icon(Icons.play_circle_outline, color: Colors.black),
                   label: Text(
-                    "YouTube",
+                    "Demo",
                     style: GoogleFonts.blinker(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

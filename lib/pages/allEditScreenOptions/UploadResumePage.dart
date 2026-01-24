@@ -132,14 +132,14 @@
 
 
 
-import 'dart:io';
-
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:io' as io;
 
 class UploadResumePage extends StatefulWidget {
   final String portfolioId;
@@ -151,7 +151,7 @@ class UploadResumePage extends StatefulWidget {
 }
 
 class _UploadResumePageState extends State<UploadResumePage> {
-  File? _resumeFile;
+  dynamic _resumeFile;
   bool isLoading = false;
   String? uploadedUrl;
 
@@ -161,37 +161,44 @@ class _UploadResumePageState extends State<UploadResumePage> {
       allowedExtensions: ['pdf'],
     );
 
-    if (result != null && result.files.single.path != null) {
-      File file = File(result.files.single.path!);
-      int sizeInBytes = await file.length();
-      double sizeInMB = sizeInBytes / (1024 * 1024);
+    if (result != null) {
+      final selectedFile = result.files.single;
+      final int sizeInBytes = selectedFile.size;
+      final double sizeInMB = sizeInBytes / (1024 * 1024);
 
       if (sizeInMB > 1) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                "❌ Pdf Must be less than 1 Mb",
-                style: GoogleFonts.blinker(
-                  color: Colors.blue,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+            content: Text(
+              "❌ Pdf Must be less than 1 Mb",
+              style: GoogleFonts.blinker(
+                color: Colors.blue,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
+            ),
           ),
         );
         return;
       }
 
       setState(() {
-        _resumeFile = file;
+        _resumeFile = selectedFile;
       });
     }
   }
 
 
-  Future<String> _uploadFileToFirebase(File file, String path) async {
+  Future<String> _uploadFileToFirebase(dynamic fileSource, String path) async {
     Reference storageRef = FirebaseStorage.instance.ref().child(path);
-    UploadTask uploadTask = storageRef.putFile(file);
+    UploadTask uploadTask;
+    if (kIsWeb) {
+      final PlatformFile platformFile = fileSource as PlatformFile;
+      uploadTask = storageRef.putData(platformFile.bytes!);
+    } else {
+      final PlatformFile platformFile = fileSource as PlatformFile;
+      uploadTask = storageRef.putFile(io.File(platformFile.path!));
+    }
     TaskSnapshot snapshot = await uploadTask;
     return await snapshot.ref.getDownloadURL();
   }
@@ -246,12 +253,18 @@ class _UploadResumePageState extends State<UploadResumePage> {
   }
 
   Widget _fileInfo() {
+    String fileName = "No file selected";
+    if (_resumeFile != null) {
+      if (kIsWeb) {
+        fileName = "Selected file: ${(_resumeFile as PlatformFile).name}";
+      } else {
+        fileName = "Selected file: ${(_resumeFile as PlatformFile).name}";
+      }
+    }
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Text(
-        _resumeFile != null
-            ? "Selected file: ${_resumeFile!.path.split('/').last}"
-            : "No file selected",
+        fileName,
         style: GoogleFonts.blinker(
           color: Colors.black,
           fontSize: 16,

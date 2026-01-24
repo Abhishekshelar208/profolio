@@ -1,0 +1,618 @@
+Analyzing profolio...                                           
+
+   info • The import of 'package:flutter/services.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/abhishek.dart:2:8 • unnecessary_import
+   info • Parameter 'key' could be a super parameter • lib/abhishek.dart:5:9 • use_super_parameters
+   info • The private field _pageController could be 'final' • lib/abhishek.dart:12:18 • prefer_final_fields
+warning • The value of the field '_currentPage' isn't used • lib/abhishek.dart:13:7 • unused_field
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:118:19 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:226:19 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:235:34 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:247:34 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:288:25 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:474:21 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:522:21 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/abhishek.dart:573:21 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/abhishek.dart:663:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/abhishek.dart:672:27 • deprecated_member_use
+   info • Type could be non-nullable • lib/main.dart:203:23 • unnecessary_nullable_for_final_variable_declarations
+   info • Type could be non-nullable • lib/main.dart:262:19 • unnecessary_nullable_for_final_variable_declarations
+warning • The value of the local variable 'portfolioId' isn't used • lib/main.dart:265:20 • unused_local_variable
+   info • The file name 'AchievementSliderForDesignFive.dart' isn't a lower_case_with_underscores identifier • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:1:1 • file_names
+   info • Invalid use of a private type in a public API • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:10:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:141:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:142:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:148:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:155:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:162:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:199:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:205:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:227:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:303:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:345:63 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:461:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:462:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:467:56 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:515:23 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:516:23 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:527:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:534:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:641:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFive.dart:746:47 • deprecated_member_use
+   info • The file name 'AchievementSliderForDesignFour.dart' isn't a lower_case_with_underscores identifier • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:1:1 • file_names
+warning • The name cos is shown, but isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:2:25 • unused_shown_name
+warning • The name sin is shown, but isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:2:30 • unused_shown_name
+   info • Invalid use of a private type in a public API • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:12:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:122:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:123:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:128:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:133:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:140:46 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:169:20 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:182:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:202:46 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:265:69 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:297:58 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:405:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:420:63 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:424:49 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:466:62 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:472:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:495:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:553:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:553:66 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:558:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:622:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:643:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:643:68 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:651:39 • deprecated_member_use
+   info • Unnecessary braces in a string interpolation • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:730:43 • unnecessary_brace_in_string_interps
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignFour.dart:732:39 • deprecated_member_use
+   info • The file name 'AchievementSliderForDesignSix.dart' isn't a lower_case_with_underscores identifier • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:1:1 • file_names
+warning • The value of the field 'darkPrimary' isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:33:22 • unused_field
+warning • The value of the field 'purpleMid' isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:34:22 • unused_field
+warning • The value of the field 'purpleLight' isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:35:22 • unused_field
+warning • The value of the field 'darkBg' isn't used • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:37:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:166:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:172:39 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:209:18 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:251:45 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:252:28 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:322:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:327:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:368:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:380:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:398:27 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:401:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:450:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:451:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/AchivementsSliders/AchievementSliderForDesignSix.dart:479:33 • deprecated_member_use
+   info • Invalid use of a private type in a public API • lib/pages/AchivementsSliders/achievementsliderfordesignthree.dart:11:3 • library_private_types_in_public_api
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:202:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:202:3 • prefer_const_constructors_in_immutables
+   info • Invalid use of a private type in a public API • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:205:3 • library_private_types_in_public_api
+warning • The declaration '_showPrevious' isn't referenced • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:213:8 • unused_element
+warning • The declaration '_showNext' isn't referenced • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:220:8 • unused_element
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/AchivementsSliders/achievementsliderfordesigntwo.dart:351:13 • sized_box_for_whitespace
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/AchivementsSliders/achivementsliderfordesignone.dart:205:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/AchivementsSliders/achivementsliderfordesignone.dart:205:3 • prefer_const_constructors_in_immutables
+   info • Invalid use of a private type in a public API • lib/pages/AchivementsSliders/achivementsliderfordesignone.dart:208:3 • library_private_types_in_public_api
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/AchivementsSliders/achivementsliderfordesignone.dart:371:13 • sized_box_for_whitespace
+   info • The file name 'ConnectWithMeDesignFive.dart' isn't a lower_case_with_underscores identifier • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:1:1 • file_names
+   info • Invalid use of a private type in a public API • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:11:3 • library_private_types_in_public_api
+warning • The value of the field 'accentBlue' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:35:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:142:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:148:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:260:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:359:46 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:429:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:430:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:435:37 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:607:18 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:631:50 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:686:9 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:707:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:762:41 • deprecated_member_use
+warning • The value of the local variable 'angle' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:771:13 • unused_local_variable
+warning • The value of the local variable 'angle' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignFive.dart:790:13 • unused_local_variable
+   info • The file name 'ConnectWithMeDesignFour.dart' isn't a lower_case_with_underscores identifier • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:1:1 • file_names
+   info • Invalid use of a private type in a public API • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:13:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:128:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:129:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:134:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:139:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:146:46 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:195:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:196:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:197:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:204:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:210:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:224:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:225:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:229:49 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:281:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:282:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:283:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:303:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:317:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:318:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:323:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:431:33 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:440:9 • sized_box_for_whitespace
+   info • Unnecessary use of 'toList' in a spread • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:470:18 • unnecessary_to_list_in_spreads
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:581:43 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:599:22 • sized_box_for_whitespace
+   info • Unnecessary use of 'toList' in a spread • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:628:24 • unnecessary_to_list_in_spreads
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:649:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:650:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:655:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:689:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:719:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:720:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:721:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:726:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:731:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:777:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignFour.dart:778:29 • deprecated_member_use
+   info • The file name 'ConnectWithMeDesignSix.dart' isn't a lower_case_with_underscores identifier • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:1:1 • file_names
+warning • The value of the field 'darkPrimary' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:39:22 • unused_field
+warning • The value of the field 'purpleLight' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:41:22 • unused_field
+warning • The value of the field 'darkBg' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:43:22 • unused_field
+warning • The value of the field 'accentGlow' isn't used • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:48:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:206:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:212:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:290:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:358:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:432:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:479:69 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:508:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:616:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:624:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:628:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:635:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:677:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:677:64 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ConnectwithMe/ConnectWithMeDesignSix.dart:684:49 • deprecated_member_use
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/ConnectwithMe/connectwithmefordesignone.dart:110:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/ConnectwithMe/connectwithmefordesignone.dart:110:3 • prefer_const_constructors_in_immutables
+   info • Don't invoke 'print' in production code • lib/pages/ConnectwithMe/connectwithmefordesignone.dart:118:9 • avoid_print
+warning • The value of the local variable 'iconSize' isn't used • lib/pages/ConnectwithMe/connectwithmefordesignone.dart:128:16 • unused_local_variable
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/connectwithmefordesignone.dart:195:14 • sized_box_for_whitespace
+   info • Invalid use of a private type in a public API • lib/pages/ConnectwithMe/connectwithmefordesignthree.dart:13:3 • library_private_types_in_public_api
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/ConnectwithMe/connectwithmefordesigntwo.dart:8:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/ConnectwithMe/connectwithmefordesigntwo.dart:8:3 • prefer_const_constructors_in_immutables
+   info • Don't invoke 'print' in production code • lib/pages/ConnectwithMe/connectwithmefordesigntwo.dart:16:9 • avoid_print
+warning • The value of the local variable 'iconSize' isn't used • lib/pages/ConnectwithMe/connectwithmefordesigntwo.dart:26:16 • unused_local_variable
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ConnectwithMe/connectwithmefordesigntwo.dart:93:14 • sized_box_for_whitespace
+   info • The file name 'CouponVerificationPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/CouponVerificationPage.dart:1:1 • file_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/CouponVerificationPage.dart:53:23 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/CouponVerificationPage.dart:74:21 • use_build_context_synchronously
+   info • The file name 'CreatePaymentCodePage.dart' isn't a lower_case_with_underscores identifier • lib/pages/CreatePaymentCodePage.dart:1:1 • file_names
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/pages/CreatePaymentCodePage.dart:6:8 • depend_on_referenced_packages
+   info • Function literals shouldn't be passed to 'forEach' • lib/pages/CreatePaymentCodePage.dart:66:25 • avoid_function_literals_in_foreach_calls
+   info • 'Share' is deprecated and shouldn't be used. Use SharePlus instead • lib/pages/CreatePaymentCodePage.dart:119:13 • deprecated_member_use
+   info • 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead • lib/pages/CreatePaymentCodePage.dart:119:19 • deprecated_member_use
+   info • Don't use 'BuildContext's across async gaps • lib/pages/CreatePaymentCodePage.dart:121:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/CreatePaymentCodePage.dart:139:28 • use_build_context_synchronously
+   info • The file name 'DemoVideoPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/DemoVideoPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/DemoVideoPage.dart:8:9 • use_super_parameters
+   info • Don't use 'BuildContext's across async gaps • lib/pages/DemoVideoPage.dart:54:28 • use_build_context_synchronously
+   info • The file name 'DeveloperProfilePage.dart' isn't a lower_case_with_underscores identifier • lib/pages/DeveloperProfilePage.dart:1:1 • file_names
+   info • The file name 'ExperienceSectionForDesignFive.dart' isn't a lower_case_with_underscores identifier • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:1:1 • file_names
+   info • Invalid use of a private type in a public API • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:10:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:123:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:129:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:196:58 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:257:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:292:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:293:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:376:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFive.dart:488:33 • deprecated_member_use
+   info • The file name 'ExperienceSectionForDesignFour.dart' isn't a lower_case_with_underscores identifier • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:1:1 • file_names
+warning • Unused import: 'dart:math' • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:2:8 • unused_import
+   info • Invalid use of a private type in a public API • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:12:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:95:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:96:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:101:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:106:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:192:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:234:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:234:66 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:239:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:303:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:324:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:332:39 • deprecated_member_use
+   info • Unnecessary braces in a string interpolation • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:411:43 • unnecessary_brace_in_string_interps
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignFour.dart:413:39 • deprecated_member_use
+   info • The file name 'ExperienceSectionForDesignSix.dart' isn't a lower_case_with_underscores identifier • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:1:1 • file_names
+   info • The private field _pageController could be 'final' • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:17:18 • prefer_final_fields
+warning • The value of the field '_elevationAnimation' isn't used • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:28:26 • unused_field
+warning • The value of the field 'darkPrimary' isn't used • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:31:22 • unused_field
+warning • The value of the field 'purpleMid' isn't used • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:32:22 • unused_field
+warning • The value of the field 'purpleLight' isn't used • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:33:22 • unused_field
+warning • The value of the field 'darkBg' isn't used • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:35:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:119:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:125:39 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:164:13 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:255:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:354:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:357:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:396:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:448:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:481:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:484:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:484:71 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:491:52 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ExperienceSliders/ExperienceSectionForDesignSix.dart:506:31 • deprecated_member_use
+   info • Invalid use of a private type in a public API • lib/pages/ExperienceSliders/experiencesectionfordesignthree.dart:11:3 • library_private_types_in_public_api
+   info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/pages/ExperienceSliders/experiencesliderfordesignone.dart:117:8 • unnecessary_import
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/ExperienceSliders/experiencesliderfordesignone.dart:124:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/ExperienceSliders/experiencesliderfordesignone.dart:124:3 • prefer_const_constructors_in_immutables
+   info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/pages/ExperienceSliders/experiencesliderfordesigntwo.dart:1:8 • unnecessary_import
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/ExperienceSliders/experiencesliderfordesigntwo.dart:8:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/ExperienceSliders/experiencesliderfordesigntwo.dart:8:3 • prefer_const_constructors_in_immutables
+   info • The file name 'PaymentCodeVerificationPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/PaymentCodeVerificationPage.dart:1:1 • file_names
+warning • Unused import: 'dart:io' • lib/pages/PaymentCodeVerificationPage.dart:7:8 • unused_import
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:63:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:67:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:98:30 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:107:30 • use_build_context_synchronously
+   info • Unnecessary braces in a string interpolation • lib/pages/PaymentCodeVerificationPage.dart:143:70 • unnecessary_brace_in_string_interps
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:157:9 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/PaymentCodeVerificationPage.dart:163:28 • use_build_context_synchronously
+   info • The file name 'ProjectSliderForDesignFive.dart' isn't a lower_case_with_underscores identifier • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:1:1 • file_names
+warning • The value of the field '_scaleAnimation' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:22:26 • unused_field
+warning • The value of the field 'accentBlue' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:27:22 • unused_field
+warning • The value of the field 'successGreen' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:32:22 • unused_field
+warning • The value of the field 'warningOrange' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:33:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:149:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:154:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:160:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:166:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:225:53 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:226:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:230:58 • deprecated_member_use
+   info • Unnecessary instance of 'Container' • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:240:85 • avoid_unnecessary_containers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:244:59 • deprecated_member_use
+   info • Unnecessary instance of 'Container' • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:248:43 • avoid_unnecessary_containers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:252:60 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:324:60 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:327:62 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:394:64 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:396:46 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:426:37 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:479:69 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:484:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:513:32 • deprecated_member_use
+   info • Unnecessary braces in a string interpolation • lib/pages/ProjectSliders/ProjectSliderForDesignFive.dart:608:40 • unnecessary_brace_in_string_interps
+   info • The file name 'ProjectSliderForDesignFour.dart' isn't a lower_case_with_underscores identifier • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:1:1 • file_names
+warning • The name cos is shown, but isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:2:25 • unused_shown_name
+warning • The name sin is shown, but isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:2:30 • unused_shown_name
+   info • Invalid use of a private type in a public API • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:13:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:112:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:113:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:118:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:123:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:171:53 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:172:53 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:173:53 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:178:60 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:191:79 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:196:57 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:200:37 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:205:55 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:245:49 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:257:25 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:274:63 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:275:63 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:280:63 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:348:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:396:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:432:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:432:66 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:437:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:501:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:523:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:530:39 • deprecated_member_use
+   info • Unnecessary braces in a string interpolation • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:609:43 • unnecessary_brace_in_string_interps
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignFour.dart:611:39 • deprecated_member_use
+   info • The file name 'ProjectSliderForDesignSix.dart' isn't a lower_case_with_underscores identifier • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:1:1 • file_names
+   info • The private field _pageController could be 'final' • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:18:18 • prefer_final_fields
+warning • The value of the field '_scaleAnimation' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:30:26 • unused_field
+warning • The value of the field 'purpleMid' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:35:22 • unused_field
+warning • The value of the field 'purpleLight' isn't used • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:36:22 • unused_field
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:143:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:149:39 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:188:13 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:283:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:319:25 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:320:26 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:357:28 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:388:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:405:39 • deprecated_member_use
+   info • Unnecessary instance of 'Container' • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:417:12 • avoid_unnecessary_containers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:426:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:429:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:470:29 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:509:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:512:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:541:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:544:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:628:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:695:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:728:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:731:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:731:71 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:738:52 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/ProjectSliders/ProjectSliderForDesignSix.dart:753:31 • deprecated_member_use
+   info • Parameter 'key' could be a super parameter • lib/pages/ProjectSliders/projectsliderfordesignone.dart:251:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/ProjectSliders/projectsliderfordesignone.dart:254:3 • library_private_types_in_public_api
+   info • Unnecessary use of 'toList' in a spread • lib/pages/ProjectSliders/projectsliderfordesignone.dart:311:20 • unnecessary_to_list_in_spreads
+   info • Invalid use of a private type in a public API • lib/pages/ProjectSliders/projectsliderfordesignthree.dart:12:3 • library_private_types_in_public_api
+   info • Parameter 'key' could be a super parameter • lib/pages/ProjectSliders/projectsliderfordesigntwo.dart:732:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/ProjectSliders/projectsliderfordesigntwo.dart:735:3 • library_private_types_in_public_api
+warning • The declaration '_showPrevious' isn't referenced • lib/pages/ProjectSliders/projectsliderfordesigntwo.dart:750:8 • unused_element
+warning • The declaration '_showNext' isn't referenced • lib/pages/ProjectSliders/projectsliderfordesigntwo.dart:756:8 • unused_element
+   info • Unnecessary use of 'toList' in a spread • lib/pages/ProjectSliders/projectsliderfordesigntwo.dart:788:20 • unnecessary_to_list_in_spreads
+   info • The file name 'TransactionHistoryPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/TransactionHistoryPage.dart:1:1 • file_names
+warning • Unused import: 'dart:typed_data' • lib/pages/TransactionHistoryPage.dart:1:8 • unused_import
+   info • The file name 'UploadImagePage.dart' isn't a lower_case_with_underscores identifier • lib/pages/UploadImagePage.dart:1:1 • file_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/UploadImagePage.dart:92:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/UploadImagePage.dart:100:28 • use_build_context_synchronously
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/pages/UploadImagePage.dart:143:24 • sized_box_for_whitespace
+   info • The file name 'VerifyDetailsPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/VerifyDetailsPage.dart:1:1 • file_names
+warning • Unused import: 'package:flutter/foundation.dart' • lib/pages/VerifyDetailsPage.dart:2:8 • unused_import
+warning • Unused import: 'dart:io' • lib/pages/VerifyDetailsPage.dart:4:8 • unused_import
+   info • Don't use 'BuildContext's across async gaps • lib/pages/VerifyDetailsPage.dart:70:23 • use_build_context_synchronously
+   info • The file name 'AdminDashboardPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/AdminDashboardPage.dart:1:1 • file_names
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/adminPages/AdminDashboardPage.dart:129:56 • deprecated_member_use
+   info • The file name 'AdminMainPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/AdminMainPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/adminPages/AdminMainPage.dart:16:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/adminPages/AdminMainPage.dart:156:40 • deprecated_member_use
+   info • The file name 'AdminPinEntryPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/AdminPinEntryPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/adminPages/AdminPinEntryPage.dart:8:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/adminPages/AdminPinEntryPage.dart:11:3 • library_private_types_in_public_api
+   info • The file name 'AdminPortfolioManagerPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/AdminPortfolioManagerPage.dart:1:1 • file_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/AdminPortfolioManagerPage.dart:47:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/AdminPortfolioManagerPage.dart:75:28 • use_build_context_synchronously
+   info • The file name 'AdminViewAllUsersPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/AdminViewAllUsersPage.dart:1:1 • file_names
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/adminPages/AdminViewAllUsersPage.dart:7:7 • use_key_in_widget_constructors
+   info • Invalid use of a private type in a public API • lib/pages/adminPages/AdminViewAllUsersPage.dart:9:3 • library_private_types_in_public_api
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/adminPages/AdminViewAllUsersPage.dart:94:9 • use_key_in_widget_constructors
+   info • The file name 'GenerateCouponCodePage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/GenerateCouponCodePage.dart:1:1 • file_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/GenerateCouponCodePage.dart:84:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/GenerateCouponCodePage.dart:114:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/GenerateCouponCodePage.dart:126:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/GenerateCouponCodePage.dart:138:26 • use_build_context_synchronously
+   info • The file name 'ShopListPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/ShopListPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/adminPages/ShopListPage.dart:10:9 • use_super_parameters
+   info • Parameter 'key' could be a super parameter • lib/pages/adminPages/ShopListPage.dart:104:9 • use_super_parameters
+   info • The file name 'UpdateDemoVideoPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/UpdateDemoVideoPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/adminPages/UpdateDemoVideoPage.dart:7:9 • use_super_parameters
+warning • The value of the field '_videoId' isn't used • lib/pages/adminPages/UpdateDemoVideoPage.dart:18:11 • unused_field
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/UpdateDemoVideoPage.dart:39:28 • use_build_context_synchronously
+   info • The file name 'profolioListPageForAdmin.dart' isn't a lower_case_with_underscores identifier • lib/pages/adminPages/profolioListPageForAdmin.dart:1:1 • file_names
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/adminPages/profolioListPageForAdmin.dart:26:7 • use_key_in_widget_constructors
+   info • Invalid use of a private type in a public API • lib/pages/adminPages/profolioListPageForAdmin.dart:28:3 • library_private_types_in_public_api
+   info • 'WillPopScope' is deprecated and shouldn't be used. Use PopScope instead. The Android predictive back feature will not work with WillPopScope. This feature was deprecated after v3.12.0-1.0.pre • lib/pages/adminPages/profolioListPageForAdmin.dart:59:12 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/adminPages/profolioListPageForAdmin.dart:193:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/adminPages/profolioListPageForAdmin.dart:204:51 • deprecated_member_use
+   info • 'Share' is deprecated and shouldn't be used. Use SharePlus instead • lib/pages/adminPages/profolioListPageForAdmin.dart:311:59 • deprecated_member_use
+   info • 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead • lib/pages/adminPages/profolioListPageForAdmin.dart:311:65 • deprecated_member_use
+   info • Don't use 'BuildContext's across async gaps • lib/pages/adminPages/profolioListPageForAdmin.dart:382:70 • use_build_context_synchronously
+   info • The file name 'AddNewProjectPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/AddNewProjectPage.dart:1:1 • file_names
+   info • The file name 'EditAchievementScreen.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditAchievementScreen.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditAchievementScreen.dart:14:9 • use_super_parameters
+warning • The value of the local variable 'user' isn't used • lib/pages/allEditScreenOptions/EditAchievementScreen.dart:104:11 • unused_local_variable
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditAchievementScreen.dart:128:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditAchievementScreen.dart:142:19 • use_build_context_synchronously
+   info • The file name 'EditExperienceDetailsPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:10:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:13:3 • library_private_types_in_public_api
+warning • The value of the field '_auth' isn't used • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:17:22 • unused_field
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:64:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditExperienceDetailsPage.dart:78:19 • use_build_context_synchronously
+   info • The file name 'EditPersonalDetailsScreen.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:13:9 • use_super_parameters
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:60:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:61:21 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:122:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditPersonalDetailsScreen.dart:131:19 • use_build_context_synchronously
+   info • The file name 'EditProjectScreen.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditProjectScreen.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditProjectScreen.dart:16:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/allEditScreenOptions/EditProjectScreen.dart:19:3 • library_private_types_in_public_api
+warning • The declaration '_pickImage' isn't referenced • lib/pages/allEditScreenOptions/EditProjectScreen.dart:44:16 • unused_element
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditProjectScreen.dart:122:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditProjectScreen.dart:138:19 • use_build_context_synchronously
+   info • The file name 'EditSkillsScreen.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:9:9 • use_super_parameters
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:42:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:47:21 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:72:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSkillsScreen.dart:84:19 • use_build_context_synchronously
+   info • The file name 'EditSocialLinksPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/EditSocialLinksPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/EditSocialLinksPage.dart:125:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/allEditScreenOptions/EditSocialLinksPage.dart:128:3 • library_private_types_in_public_api
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSocialLinksPage.dart:178:26 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/EditSocialLinksPage.dart:190:19 • use_build_context_synchronously
+   info • The file name 'IndividualAchievementEditPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/IndividualAchievementEditPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/IndividualAchievementEditPage.dart:10:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/allEditScreenOptions/IndividualAchievementEditPage.dart:114:59 • deprecated_member_use
+   info • The file name 'IndividualExperienceEditPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/IndividualExperienceEditPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/IndividualExperienceEditPage.dart:7:9 • use_super_parameters
+   info • The file name 'IndividualProjectEditPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/IndividualProjectEditPage.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/allEditScreenOptions/IndividualProjectEditPage.dart:10:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/allEditScreenOptions/IndividualProjectEditPage.dart:123:59 • deprecated_member_use
+   info • The file name 'UploadResumePage.dart' isn't a lower_case_with_underscores identifier • lib/pages/allEditScreenOptions/UploadResumePage.dart:1:1 • file_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/UploadResumePage.dart:170:30 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/UploadResumePage.dart:232:28 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/UploadResumePage.dart:245:21 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/allEditScreenOptions/UploadResumePage.dart:247:28 • use_build_context_synchronously
+   info • Parameter 'key' could be a super parameter • lib/pages/all_achievements_page.dart:8:9 • use_super_parameters
+   info • Parameter 'key' could be a super parameter • lib/pages/all_projects_page.dart:9:9 • use_super_parameters
+   info • The file name 'designSelectionPage.dart' isn't a lower_case_with_underscores identifier • lib/pages/designSelectionPage.dart:1:1 • file_names
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/designSelectionPage.dart:243:7 • use_key_in_widget_constructors
+   info • Invalid use of a private type in a public API • lib/pages/designSelectionPage.dart:245:3 • library_private_types_in_public_api
+   info • The local variable '_dbRef' starts with an underscore • lib/pages/designSelectionPage.dart:263:29 • no_leading_underscores_for_local_identifiers
+   info • The file name 'editPortfolioScreen.dart' isn't a lower_case_with_underscores identifier • lib/pages/editPortfolioScreen.dart:1:1 • file_names
+   info • Parameter 'key' could be a super parameter • lib/pages/editPortfolioScreen.dart:15:9 • use_super_parameters
+   info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/pages/fullscreenimageview.dart:2:8 • unnecessary_import
+   info • Parameter 'key' could be a super parameter • lib/pages/fullscreenimageview.dart:8:9 • use_super_parameters
+   info • The file name 'loadingAnimation.dart' isn't a lower_case_with_underscores identifier • lib/pages/loadingAnimation.dart:1:1 • file_names
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/loadingAnimation.dart:8:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/pages/loadingAnimation.dart:8:3 • prefer_const_constructors_in_immutables
+   info • Parameter 'key' could be a super parameter • lib/pages/marqueechips.dart:7:9 • use_super_parameters
+   info • Invalid use of a private type in a public API • lib/pages/marqueechips.dart:14:3 • library_private_types_in_public_api
+   info • Parameter 'key' could be a super parameter • lib/pages/portfoliodetailloader.dart:131:9 • use_super_parameters
+warning • Unused import: 'package:profolio/abhishek.dart' • lib/pages/portfoliolist.dart:192:8 • unused_import
+warning • Unused import: 'CreatePaymentCodePage.dart' • lib/pages/portfoliolist.dart:204:8 • unused_import
+warning • Unused import: 'UploadImagePage.dart' • lib/pages/portfoliolist.dart:208:8 • unused_import
+warning • Unused import: 'adminPages/AdminDashboardPage.dart' • lib/pages/portfoliolist.dart:209:8 • unused_import
+warning • Unused import: 'adminPages/AdminMainPage.dart' • lib/pages/portfoliolist.dart:210:8 • unused_import
+warning • Unused import: 'adminPages/AdminPortfolioManagerPage.dart' • lib/pages/portfoliolist.dart:212:8 • unused_import
+warning • Unused import: 'adminPages/GenerateCouponCodePage.dart' • lib/pages/portfoliolist.dart:213:8 • unused_import
+warning • Unused import: 'adminPages/ShopListPage.dart' • lib/pages/portfoliolist.dart:214:8 • unused_import
+   info • Constructors for public widgets should have a named 'key' parameter • lib/pages/portfoliolist.dart:217:7 • use_key_in_widget_constructors
+   info • Invalid use of a private type in a public API • lib/pages/portfoliolist.dart:219:3 • library_private_types_in_public_api
+   info • 'WillPopScope' is deprecated and shouldn't be used. Use PopScope instead. The Android predictive back feature will not work with WillPopScope. This feature was deprecated after v3.12.0-1.0.pre • lib/pages/portfoliolist.dart:250:12 • deprecated_member_use
+   info • Don't use 'BuildContext's across async gaps • lib/pages/portfoliolist.dart:380:21 • use_build_context_synchronously
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/portfoliolist.dart:466:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/portfoliolist.dart:477:51 • deprecated_member_use
+   info • 'Share' is deprecated and shouldn't be used. Use SharePlus instead • lib/pages/portfoliolist.dart:644:59 • deprecated_member_use
+   info • 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead • lib/pages/portfoliolist.dart:644:65 • deprecated_member_use
+   info • Don't use 'BuildContext's across async gaps • lib/pages/portfoliolist.dart:725:70 • use_build_context_synchronously
+   info • Empty constructor bodies should be written using a ';' rather than '{}' • lib/pages/session_manager.dart:10:32 • empty_constructor_bodies
+   info • Parameter 'key' could be a super parameter • lib/pages/signuppage.dart:10:9 • use_super_parameters
+   info • Don't use 'BuildContext's across async gaps • lib/pages/signuppage.dart:170:11 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/signuppage.dart:175:28 • use_build_context_synchronously
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/signuppage.dart:353:33 • deprecated_member_use
+warning • Unused import: 'package:profolio/pages/userinfopage.dart' • lib/pages/splash_services.dart:54:8 • unused_import
+   info • Don't use 'BuildContext's across async gaps • lib/pages/splash_services.dart:70:11 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/splash_services.dart:76:11 • use_build_context_synchronously
+   info • Don't invoke 'print' in production code • lib/pages/splash_services.dart:81:7 • avoid_print
+warning • Unused import: 'package:cloud_firestore/cloud_firestore.dart' • lib/pages/userinfopage.dart:3:8 • unused_import
+warning • Unused import: 'dart:math' • lib/pages/userinfopage.dart:9:8 • unused_import
+warning • Unused import: 'package:profolio/pages/designSelectionPage.dart' • lib/pages/userinfopage.dart:13:8 • unused_import
+warning • Unused import: 'package:profolio/portfolioDesings/designone.dart' • lib/pages/userinfopage.dart:16:8 • unused_import
+warning • Unused import: 'package:url_launcher/url_launcher.dart' • lib/pages/userinfopage.dart:17:8 • unused_import
+warning • Unused import: '../portfolioDesings/designfour.dart' • lib/pages/userinfopage.dart:19:8 • unused_import
+warning • Unused import: '../portfolioDesings/designthreee.dart' • lib/pages/userinfopage.dart:20:8 • unused_import
+warning • Unused import: '../portfolioDesings/designtwo.dart' • lib/pages/userinfopage.dart:21:8 • unused_import
+warning • Unused import: 'loadingAnimation.dart' • lib/pages/userinfopage.dart:24:8 • unused_import
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/pages/userinfopage.dart:25:8 • depend_on_referenced_packages
+   info • The variable name 'InternshipCompletedContoller' isn't a lowerCamelCase identifier • lib/pages/userinfopage.dart:84:25 • non_constant_identifier_names
+   info • The variable name 'ProjectCompletedContoller' isn't a lowerCamelCase identifier • lib/pages/userinfopage.dart:85:25 • non_constant_identifier_names
+   info • The variable name 'NoofSkillsController' isn't a lowerCamelCase identifier • lib/pages/userinfopage.dart:86:25 • non_constant_identifier_names
+   info • Don't use 'BuildContext's across async gaps • lib/pages/userinfopage.dart:273:30 • use_build_context_synchronously
+   info • Don't invoke 'print' in production code • lib/pages/userinfopage.dart:282:7 • avoid_print
+warning • The declaration '_saveUserInfo' isn't referenced • lib/pages/userinfopage.dart:310:8 • unused_element
+   info • Don't invoke 'print' in production code • lib/pages/userinfopage.dart:312:7 • avoid_print
+   info • Don't use 'BuildContext's across async gaps • lib/pages/userinfopage.dart:497:9 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/pages/userinfopage.dart:504:28 • use_build_context_synchronously
+   info • The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/portfolioDesings/design_five.dart:1:8 • unnecessary_import
+warning • Unused import: '../pages/AchivementsSliders/AchievementSliderForDesignFour.dart' • lib/portfolioDesings/design_five.dart:9:8 • unused_import
+warning • Unused import: '../pages/ConnectwithMe/ConnectWithMeDesignFour.dart' • lib/portfolioDesings/design_five.dart:10:8 • unused_import
+warning • Unused import: '../pages/ExperienceSliders/ExperienceSectionForDesignFour.dart' • lib/portfolioDesings/design_five.dart:11:8 • unused_import
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:117:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:122:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:128:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:134:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:192:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:203:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:275:34 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:278:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:393:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:461:24 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:464:26 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:711:28 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:714:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_five.dart:813:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:356:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:370:63 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/design_six.dart:475:12 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:608:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:628:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:661:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:662:29 • deprecated_member_use
+warning • The declaration '_buildProfessionalInfo' isn't referenced • lib/portfolioDesings/design_six.dart:719:10 • unused_element
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/design_six.dart:984:53 • deprecated_member_use
+warning • Unused import: 'package:simple_gradient_text/simple_gradient_text.dart' • lib/portfolioDesings/designfour.dart:6:8 • unused_import
+warning • Unused import: '../pages/ConnectwithMe/connectwithmefordesignthree.dart' • lib/portfolioDesings/designfour.dart:10:8 • unused_import
+warning • Unused import: '../pages/marqueechips.dart' • lib/portfolioDesings/designfour.dart:14:8 • unused_import
+   info • Invalid use of a private type in a public API • lib/portfolioDesings/designfour.dart:22:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:106:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:142:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:143:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:148:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:153:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:198:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:282:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:283:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:288:39 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:298:39 • deprecated_member_use
+warning • The value of the local variable 'isMobile' isn't used • lib/portfolioDesings/designfour.dart:316:10 • unused_local_variable
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:337:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:342:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:365:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:451:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:495:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:509:44 • deprecated_member_use
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/designfour.dart:616:17 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/designfour.dart:636:12 • sized_box_for_whitespace
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/designfour.dart:680:18 • sized_box_for_whitespace
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:697:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:698:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:703:52 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:772:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:780:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:792:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:810:54 • deprecated_member_use
+   info • Unnecessary use of 'toList' in a spread • lib/portfolioDesings/designfour.dart:823:12 • unnecessary_to_list_in_spreads
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:854:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:855:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:860:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:865:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:898:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:899:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:904:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designfour.dart:912:35 • deprecated_member_use
+   info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/portfolioDesings/designone.dart:13:8 • unnecessary_import
+warning • Unused import: 'package:simple_gradient_text/simple_gradient_text.dart' • lib/portfolioDesings/designone.dart:16:8 • unused_import
+warning • Unused import: '../pages/AchivementsSliders/achievementsliderfordesigntwo.dart' • lib/portfolioDesings/designone.dart:19:8 • unused_import
+warning • Unused import: '../pages/ConnectwithMe/connectwithmefordesigntwo.dart' • lib/portfolioDesings/designone.dart:23:8 • unused_import
+warning • Unused import: '../pages/ExperienceSliders/experiencesliderfordesigntwo.dart' • lib/portfolioDesings/designone.dart:25:8 • unused_import
+warning • Unused import: '../pages/ProjectSliders/projectsliderfordesigntwo.dart' • lib/portfolioDesings/designone.dart:29:8 • unused_import
+   info • Constructors for public widgets should have a named 'key' parameter • lib/portfolioDesings/designone.dart:34:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/portfolioDesings/designone.dart:34:3 • prefer_const_constructors_in_immutables
+   info • Invalid use of a private type in a public API • lib/portfolioDesings/designone.dart:37:3 • library_private_types_in_public_api
+warning • The value of the field '_heightAnimation' isn't used • lib/portfolioDesings/designone.dart:42:26 • unused_field
+warning • The value of the field '_rotationAnimation' isn't used • lib/portfolioDesings/designone.dart:43:26 • unused_field
+warning • The value of the field '_opacityAnimation' isn't used • lib/portfolioDesings/designone.dart:44:26 • unused_field
+warning • The value of the field '_scrollRotationAngle' isn't used • lib/portfolioDesings/designone.dart:46:10 • unused_field
+   info • The private field _scrollSpeedMultiplier could be 'final' • lib/portfolioDesings/designone.dart:47:10 • prefer_final_fields
+warning • The declaration '_launchURL' isn't referenced • lib/portfolioDesings/designone.dart:118:8 • unused_element
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designone.dart:124:9 • avoid_print
+warning • The value of the local variable 'fontSize' isn't used • lib/portfolioDesings/designone.dart:221:18 • unused_local_variable
+warning • The value of the local variable 'headingFontSize' isn't used • lib/portfolioDesings/designone.dart:226:18 • unused_local_variable
+warning • The value of the local variable 'paddingValue' isn't used • lib/portfolioDesings/designone.dart:231:18 • unused_local_variable
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designone.dart:640:35 • avoid_print
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designone.dart:643:33 • avoid_print
+   info • The import of 'package:flutter/services.dart' is unnecessary because all of the used elements are also provided by the import of 'dart:ui' • lib/portfolioDesings/designthreee.dart:4:8 • unnecessary_import
+   info • Invalid use of a private type in a public API • lib/portfolioDesings/designthreee.dart:21:3 • library_private_types_in_public_api
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/designthreee.dart:334:12 • sized_box_for_whitespace
+   info • The import of 'package:flutter/cupertino.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/portfolioDesings/designtwo.dart:1:8 • unnecessary_import
+   info • Constructors for public widgets should have a named 'key' parameter • lib/portfolioDesings/designtwo.dart:19:3 • use_key_in_widget_constructors
+   info • Constructors in '@immutable' classes should be declared as 'const' • lib/portfolioDesings/designtwo.dart:19:3 • prefer_const_constructors_in_immutables
+   info • Invalid use of a private type in a public API • lib/portfolioDesings/designtwo.dart:22:3 • library_private_types_in_public_api
+   info • The private field _scrollSpeedMultiplier could be 'final' • lib/portfolioDesings/designtwo.dart:32:10 • prefer_final_fields
+warning • The declaration '_launchURL' isn't referenced • lib/portfolioDesings/designtwo.dart:103:8 • unused_element
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designtwo.dart:109:9 • avoid_print
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/portfolioDesings/designtwo.dart:121:33 • deprecated_member_use
+warning • The value of the local variable 'fontSize' isn't used • lib/portfolioDesings/designtwo.dart:206:18 • unused_local_variable
+warning • The value of the local variable 'headingFontSize' isn't used • lib/portfolioDesings/designtwo.dart:211:18 • unused_local_variable
+warning • The value of the local variable 'paddingValue' isn't used • lib/portfolioDesings/designtwo.dart:216:18 • unused_local_variable
+warning • The value of the local variable 'screenHeight' isn't used • lib/portfolioDesings/designtwo.dart:276:32 • unused_local_variable
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designtwo.dart:319:35 • avoid_print
+   info • Don't invoke 'print' in production code • lib/portfolioDesings/designtwo.dart:322:33 • avoid_print
+   info • Use a 'SizedBox' to add whitespace to a layout • lib/portfolioDesings/designtwo.dart:373:40 • sized_box_for_whitespace
+
+614 issues found. (ran in 3.5s)

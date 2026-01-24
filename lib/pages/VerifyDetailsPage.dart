@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_fonts/google_fonts.dart';
-import 'dart:io';
+import 'dart:io' as io;
 
 class VerifyDetailsPage extends StatefulWidget {
   final TextEditingController nameController;
   final TextEditingController aboutyourselfController;
   final TextEditingController useremailController;
   final TextEditingController graduationYearController;
-  final File? imageFile;
-  final File? resumeFile;
+  final dynamic imageFile;
+  final dynamic resumeFile;
   final List skillsList;
   final List softSkillsList;
   final List toolsList;

@@ -10,6 +10,8 @@ import '../pages/ExperienceSliders/experiencesliderfordesigntwo.dart';
 import '../pages/fullscreenimageview.dart';
 import '../pages/marqueechips.dart';
 import '../pages/ProjectSliders/projectsliderfordesigntwo.dart';
+import '../pages/all_projects_page.dart';
+import '../pages/all_achievements_page.dart';
 
 class DesignTwo extends StatefulWidget {
   final Map<String, dynamic> userData;
@@ -806,7 +808,46 @@ class _DesignTwoState extends State<DesignTwo> with SingleTickerProviderStateMix
                       SizedBox(
                         height: 30,
                       ),
-                      ProjectSliderForDesignTwo(projects: widget.userData["projects"]),
+                      ProjectSliderForDesignTwo(
+                        projects: (widget.userData["projects"] as List)
+                            .take(3)
+                            .map((e) => Map<String, dynamic>.from(e))
+                            .toList(),
+                      ),
+                      const SizedBox(height: 20),
+                      if ((widget.userData["projects"] as List).length > 3)
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AllProjectsPage(
+                                    projects: widget.userData["projects"],
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 15,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: Text(
+                              "See More Projects",
+                              style: GoogleFonts.blinker(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
 
                       SizedBox(
                         height: 50,
@@ -854,8 +895,45 @@ class _DesignTwoState extends State<DesignTwo> with SingleTickerProviderStateMix
                         height: 30,
                       ),
                       AchievementSliderForDesignTwo(
-                        achievements: widget.userData["achievements"],
+                        achievements: (widget.userData["achievements"] as List)
+                            .take(3)
+                            .map((e) => Map<String, dynamic>.from(e))
+                            .toList(),
                       ),
+                      const SizedBox(height: 20),
+                      if ((widget.userData["achievements"] as List).length > 3)
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AllAchievementsPage(
+                                    achievements: widget.userData["achievements"],
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 30,
+                                vertical: 15,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: Text(
+                              "See More Achievements",
+                              style: GoogleFonts.blinker(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
                       SizedBox(
                         height: 30,
                       ),
