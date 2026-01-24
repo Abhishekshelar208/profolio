@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'dart:math';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
@@ -20,8 +21,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../portfolioDesings/designfour.dart';
 import '../portfolioDesings/designthreee.dart';
 import '../portfolioDesings/designtwo.dart';
-import 'PaymentCodeVerificationPage.dart';
-import 'VerifyDetailsPage.dart';
 import 'loadingAnimation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -102,8 +101,50 @@ class _UserInfoPageState extends State<UserInfoPage> {
   int softSkillColorIndex = 0;
 
   bool isLoading = false;
+  bool isVerified = true; // Set to true by default as we skip verification
 
-  bool isVerified = false; // add this in your StatefulWidget class
+  @override
+  void initState() {
+    super.initState();
+    // Initialize with default values
+    nameController.text = "Your Full Name";
+    aboutyourselfController.text = "I am a dedicated professional with a passion for excellence and a commitment to continuous learning. I enjoy taking on new challenges and collaborating with teams to achieve impactful results. With a solid foundation in my field, I strive to deliver high-quality work and contribute positively to every project I undertake.";
+    useremailController.text = "your.email@example.com";
+    graduationYearController.text = "202X";
+    monthofexperienceContoller.text = "0";
+    InternshipCompletedContoller.text = "0";
+    ProjectCompletedContoller.text = "0";
+    NoofSkillsController.text = "0";
+    linkedinController.text = "https://www.linkedin.com/in/yourprofile";
+    githubController.text = "https://github.com/yourusername";
+    instagramController.text = "https://www.instagram.com/yourprofile";
+    whatsappController.text = "911234567890";
+
+    // Default lists
+    skillsList = ["Skill 1", "Skill 2", "Skill 3", "Skill 4"];
+    softSkillsList = ["Teamwork", "Problem Solving", "Communication"];
+    toolsList = ["Tool 1", "Tool 2"];
+    
+    experienceList = [{
+      "title": "Your Job Title / Position",
+      "description": "Describe your key responsibilities and achievements in this role. Focus on the impact you made and the skills you utilized."
+    }];
+
+    projectsList = [{
+      "title": "Your Project Title",
+      "description": "Give a brief overview of your project, the problem it solves, and the technologies you used to build it.",
+      "techstack": "Technology A, Technology B",
+      "projectgithublink": "https://github.com/yourusername/project",
+      "projectyoutubelink": "https://youtube.com/project_demo",
+      "image": null
+    }];
+
+    achievementsList = [{
+      "title": "Your Achievement Title",
+      "description": "Describe your achievement or award in detail, highlighting why it was significant and what you earned.",
+      "image": null
+    }];
+  }
 
 
 
@@ -578,7 +619,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffe0eae5),
-      appBar: AppBar(
+      appBar: isLoading ? null : AppBar(
         backgroundColor: const Color(0xffe0eae5),
         title: Text(
           "Create Portfolio",
@@ -588,14 +629,41 @@ class _UserInfoPageState extends State<UserInfoPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
+      body: isLoading
+          ? Container(
+              color: Colors.white60,
+              width: double.infinity,
+              height: double.infinity,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Lottie.asset(
+                      'lib/assets/lottieAnimations/animationThree.json',
+                      width: 250,
+                      height: 250,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Creating your portfolio....",
+                      style: GoogleFonts.blinker(
+                        fontSize: 22,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
               GestureDetector(
                 onTap: _pickImage,
                 child: CircleAvatar(
@@ -617,746 +685,107 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       : null,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Text("Personal Details", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-
-              SizedBox(
-                height: 10,
-              ),
-              FittedBox(
-                child: Text("Demo Form is Already Filled.", style: GoogleFonts.blinker(
-                  color: Colors.redAccent,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),),
-              ),
-              FittedBox(
-                child: Text("Just Upload Profile Pic & Resume.", style: GoogleFonts.blinker(
-                  color: Colors.redAccent,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              _buildTextField(nameController, "Name", Icons.person,
-                  isEnabled: false, // disables the field
-                  defaultValue: "Abhishek Shelar", // sets default value
-                  ),
-              _buildTextField(aboutyourselfController, "About Yourself", Icons.book,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: I’m an enthusiastic engineering student passionate about technology and innovation. I enjoy solving real-world problems through creative thinking and teamwork. With a strong foundation in programming and project design, I’m eager to learn, grow, and contribute meaningfully. I thrive in dynamic environments and aim to make a positive impact.", // sets default value
-              ),
-              _buildTextField(useremailController, "Email", Icons.account_balance,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: youremail@gmail.com", // sets default value
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                enabled: false, // ✅ Disables the field
-                controller: TextEditingController(text: "Ex: 2"), // ✅ Sets default value
+              const SizedBox(height: 20),
+              Text(
+                "Upload Your Media",
                 style: GoogleFonts.blinker(
-                  color: Colors.black54,
-                  fontSize: 18,
+                  color: Colors.grey[800],
+                  fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
-                // controller: InternshipCompletedContoller,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "No of Internship Completed",
-                  labelStyle: GoogleFonts.blinker(
-                    color: Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey.shade700),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
-                  ),
-                ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              _buildTextField(graduationYearController, "Year of Graduation", Icons.date_range, keyboardType: TextInputType.number,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: 2028", // sets default value
-              ),
-
-
-
-              SizedBox(
-                height: 50,
-              ),
-              Text("Skills Section", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-
-              SizedBox(
-                height: 15,
-              ),
-              TextFormField(
-                enabled: false, // ✅ Disables the field
-                controller: TextEditingController(text: "Ex: 8"), // ✅ Sets default value
+              const SizedBox(height: 10),
+              Text(
+                "Your details are pre-filled for convenience.",
                 style: GoogleFonts.blinker(
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                // controller: NoofSkillsController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: "No of Skills",
-                  labelStyle: GoogleFonts.blinker(
-                    color: Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey.shade700),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
-                  ),
+                  color: Colors.blueGrey,
+                  fontSize: 16,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 30),
+              
+              // Profile Picture Indicator
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: _buildTextField(skillsController, "Skills", Icons.star,
-                      isEnabled: false, // disables the field
-                      defaultValue: "Ex: Java", // sets default value
-                    ),
+                  Icon(
+                    _imageFile != null ? Icons.check_circle : Icons.circle_outlined,
+                    color: _imageFile != null ? Colors.green : Colors.grey,
                   ),
-                  IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
-                    onPressed: _addSkill,
+                  const SizedBox(width: 10),
+                  Text(
+                    "Profile Picture",
+                    style: GoogleFonts.blinker(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ],
               ),
-              Wrap(
-                spacing: 8,
-                children: List.generate(skillsList.length, (index) {
-                  return Chip(
-                    label: Text(skillsList[index],
-                      style: GoogleFonts.blinker(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    backgroundColor: Colors.blue,
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100), // Apply the border radius here
-                    ),
-                    onDeleted: () {
-                      setState(() {
-                        skillsList.removeAt(index);
-                        skillColors.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
+              
+              const SizedBox(height: 20),
 
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField(softSkillsController, "Soft Skills", Icons.accessibility,
-                      isEnabled: false, // disables the field
-                      defaultValue: "Ex: Communication", // sets default value
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
-                    onPressed: _addSoftSkill,
-                  ),
-                ],
-              ),
-              Wrap(
-                spacing: 8,
-                children: List.generate(softSkillsList.length, (index) {
-                  return Chip(
-                    label: Text(softSkillsList[index],
-                      style: GoogleFonts.blinker(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    // backgroundColor: softSkillsColors[index],  if you want multiple colors
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100), // Apply the border radius here
-                    ),
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    onDeleted: () {
-                      setState(() {
-                        softSkillsList.removeAt(index);
-                        softSkillsColors.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField(toolsController, "Tools / Software Known", Icons.language,
-                      isEnabled: false, // disables the field
-                      defaultValue: "Ex: VS Code", // sets default value
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.add_circle, color: Colors.blue, size: 35),
-                    onPressed: _addTools,
-                  ),
-                ],
-              ),
-              Wrap(
-                spacing: 8,
-                children: List.generate(toolsList.length, (index) {
-                  return Chip(
-                    label: Text(toolsList[index],
-                      style: GoogleFonts.blinker(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-
-                    ),
-                    // backgroundColor: languageColors[index],
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100), // Border radius of 100
-                    ),
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    onDeleted: () {
-                      setState(() {
-                        toolsList.removeAt(index);
-                        languageColors.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Text("Experience Section", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                enabled: false, // ✅ Disables the field
-                controller: TextEditingController(text: "Ex: 18"), // ✅ Sets default value
-                style: GoogleFonts.blinker(
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                // controller: monthofexperienceContoller,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Months of Experience',
-                  labelStyle: GoogleFonts.blinker(
-                    color: Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey.shade700),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              _buildTextField(experienceTitleController, "Experience Title", Icons.emoji_events,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: Internship at XYZ Tech Solutions", // sets default value
-              ),
-              _buildTextField(experienceDescriptionController, "Experience Description", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: Completed a 6-week internship focused on real-time software development. Gained hands-on experience in Flutter, Firebase, and UI/UX design. Collaborated on building a functional mobile app for task management. Learned teamwork, version control, and client communication while meeting tight deadlines and delivering quality outcomes.", // sets default value
-              ),
-              SizedBox(height: 20,),
-              ElevatedButton.icon(
-                onPressed: _addExperiences,
-                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
-                label: Text("Add Experience", style: GoogleFonts.blinker(
+              // Resume Picker
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
                   color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.blue.withOpacity(0.3)),
                 ),
-              ),
-              SizedBox(height: 10,),
-
-              // Displaying added achievements as chips
-              Wrap(
-                spacing: 8,
-                children: List.generate(experienceList.length, (index) {
-                  return Chip(
-                    label: Text(experienceList[index]["title"],
-                      style: GoogleFonts.blinker(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    onDeleted: () {
-                      setState(() {
-                        experienceList.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Text("Project Section", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-
-              SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                enabled: false, // ✅ Disables the field
-                controller: TextEditingController(text: "Ex: 5"), // ✅ Sets default value
-                style: GoogleFonts.blinker(
-                  color: Colors.black54,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                // controller: ProjectCompletedContoller,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'No of Project Completed',
-                  labelStyle: GoogleFonts.blinker(
-                    color: Colors.black54,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629)),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey.shade700),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xfffaa629), width: 2),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              _buildTextField(projectTitleController, "Project Title", Icons.emoji_events,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: QR Based System", // sets default value
-              ),
-              _buildTextField(projectDescriptionController, "Project Description", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: Completed a 6-week project focused on real-time software development. Gained hands-on experience in Flutter, Firebase, and UI/UX design. Collaborated on building a functional mobile app for task management. Learned teamwork, version control, and client communication while meeting tight deadlines and delivering quality outcomes.", // sets default value
-              ),
-              _buildTextField(techStackController, "Tech Used", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: Java, Python, etc", // sets default value
-              ),
-              _buildTextField(githubLinkController, "Github Code link", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: https://www.github.com/username", // sets default value
-              ),
-              _buildTextField(youtubeLinkController, "Youtube Link", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: https://www.youtube.com/videotitle", // sets default value
-              ),
-              FittedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton.icon(
-                      label: Text("Select Image", style: GoogleFonts.blinker(
-                        color: Colors.black54,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                      icon: Icon(Icons.image, color: Colors.black54, size: 35),
-                      onPressed: _pickProjectImage,
-                    ),
-                    _projectImageFile != null
-                        ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(_projectImageFile!, height: 100, width: 100, fit: BoxFit.cover))
-                        : Container(),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-              ElevatedButton.icon(
-                onPressed: _addProjects,
-                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
-                label: Text("Add Project", style: GoogleFonts.blinker(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                ),
-              ),
-              SizedBox(height: 10,),
-
-              // Displaying added achievements as chips
-              Wrap(
-                spacing: 8,
-                children: List.generate(projectsList.length, (index) {
-                  return Chip(
-                    label: Text(projectsList[index]["title"],
-                      style: GoogleFonts.blinker(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    onDeleted: () {
-                      setState(() {
-                        projectsList.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
-
-
-              SizedBox(
-                height: 50,
-              ),
-              Text("Achievement Section", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-              SizedBox(
-                height: 20,
-              ),
-              _buildTextField(achievementTitleController, "Achievement Title", Icons.emoji_events,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: First Rank in Diploma", // sets default value
-              ),
-              _buildTextField(achievementDescriptionController, "Achievement Description", Icons.description,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: In my diploma I secure First rank in Second and Third Year Engineering. I also get awarded by Principle Sir and HOD Sir of Information Technology of Saraswati College of Engineering. In my diploma I secure First rank in Second and Third Year Engineering. I also get awarded by Principle Sir and HOD Sir of Information Technology of Saraswati College of Engineering.", // sets default value
-              ),
-              FittedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton.icon(
-                      label:  Text("Select Image", style: GoogleFonts.blinker(
-                        color: Colors.black54,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                      icon: Icon(Icons.image, color: Colors.black54, size: 35),
-                      onPressed: _pickAchievementImage,
-                    ),
-                    _achievementImageFile != null
-                        ? ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(_achievementImageFile!, height: 100, width: 100, fit: BoxFit.cover))
-                        : Container(),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20,),
-
-              ElevatedButton.icon(
-                onPressed: _addAchievement,
-                icon: Icon(Icons.add_circle, color: Colors.white, size: 25,),
-                label: Text("Add Achievement", style: GoogleFonts.blinker(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                ),
-              ),
-              SizedBox(height: 10,),
-
-
-
-
-
-
-              // Displaying added achievements as chips
-              Wrap(
-                spacing: 8,
-                children: List.generate(achievementsList.length, (index) {
-                  return Chip(
-                    label: Text(achievementsList[index]["title"],
-                      style: GoogleFonts.blinker(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    backgroundColor: Colors.blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    deleteIcon: Icon(Icons.close, color: Colors.white),
-                    onDeleted: () {
-                      setState(() {
-                        achievementsList.removeAt(index);
-                      });
-                    },
-                  );
-                }),
-              ),
-
-              SizedBox(
-                height: 50,
-              ),
-
-              Text("Account Links", style: GoogleFonts.blinker(
-                color: Colors.grey[800],
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),),
-
-              SizedBox(
-                height: 20,
-              ),
-
-              _buildTextField(linkedinController, "LinkedIn", Icons.linked_camera,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: https://www.linkedin.com/username", // sets default value
-              ),
-              _buildTextField(githubController, "GitHub", Icons.code,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: https://www.Github.com/username", // sets default value
-              ),
-              _buildTextField(instagramController, "Instagram", Icons.code,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: https://www.instagram.com/username", // sets default value
-              ),
-              _buildTextField(whatsappController, "WhatsApp No", Icons.numbers,
-                isEnabled: false, // disables the field
-                defaultValue: "Ex: 98768986543", // sets default value
-              ),
-
-              FittedBox(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton.icon(
-                      label: Text("Select Resume", style: GoogleFonts.blinker(
-                        color: Colors.black54,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                      icon: Icon(Icons.picture_as_pdf, color: Colors.black54, size: 35),
-                      onPressed: _pickResumeFile, // Your function to pick a PDF file
+                    IconButton(
+                      icon: const Icon(Icons.picture_as_pdf, color: Colors.redAccent, size: 50),
+                      onPressed: _pickResumeFile,
                     ),
-                    _resumeFile != null
-                        ? ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child:  Center(
-                        child: Text(
-                          path.basename(_resumeFile!.path),
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.blinker(
-                            fontSize: 16,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    )
-                        : Container(),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-
-                  _addExperiences();
-                  _addProjects();
-                  _addAchievement();
-                  _addSkill();
-                  _addSoftSkill();
-                  _addTools();
-                  // Always open the verification page
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => VerifyDetailsPage(
-                        nameController: nameController,
-                        aboutyourselfController: aboutyourselfController,
-                        useremailController: useremailController,
-                        graduationYearController: graduationYearController,
-                        imageFile: _imageFile,
-                        resumeFile: _resumeFile,
-                        skillsList: skillsList,
-                        softSkillsList: softSkillsList,
-                        toolsList: toolsList,
-                        achievementsList: achievementsList,
-                        experienceList: experienceList,
-                        projectsList: projectsList,
-                        onVerificationComplete: (bool verified) {
-                          setState(() {
-                            isVerified = verified; // ✅ Only set true if all fields are filled
-                          });
-                        },
-                      ),
-                    ),
-                  );
-
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AbsorbPointer( // Prevent manual tap on checkbox
-                      child: Checkbox(
-                        checkColor: Colors.blue,
-                        value: isVerified,
-                        onChanged: null, // Disable direct checkbox change
-                      ),
-                    ),
+                    const SizedBox(height: 10),
                     Text(
-                      "Please verify the details",
+                      _resumeFile != null 
+                        ? path.basename(_resumeFile!.path)
+                        : "Upload Resume (PDF)",
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.blinker(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue,
+                        fontSize: 16,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
+                    if (_resumeFile == null)
+                      Text(
+                        "Max size 1MB",
+                        style: GoogleFonts.blinker(fontSize: 12, color: Colors.grey),
+                      ),
                   ],
                 ),
               ),
-
-              SizedBox(height: 20,),
-              if (isVerified) // ✅ Only show when verified
+              
+              const SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => PaymentCodeVerificationPage(
-                          designPrice: widget.designPrice,
-                          onVerified: () => saveUserData(),
-                        ),
-                      ),
-                    );
+                    if (_imageFile == null || _resumeFile == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Please upload both Profile Picture and Resume")),
+                      );
+                      return;
+                    }
+                    saveUserData();
                   },
-
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   ),
                   child: Text(
-                    "Create",
+                    "Create Portfolio",
                     style: GoogleFonts.blinker(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-
-              SizedBox(height: 20,),
-
-
+              const SizedBox(height: 40),
             ],
           ),
         ),
